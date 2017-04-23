@@ -7,6 +7,10 @@ import {redirectURLEndpoint, accessTokenEndpoint} from '../envConfig'
 let authToken
 let secretToken
 
+var print = function(param) {
+  return Object.entries(param)
+}
+
 export default class LoginScreen extends React.Component {
   static route = {
     navigationBar: {
@@ -19,7 +23,7 @@ export default class LoginScreen extends React.Component {
   }
 
   _handleTwitterRedirect = async (event) => {
-    console.log('event:', event)
+    // console.log('event test:', event)
     if (!event.url.includes('+/redirect')) {
       return
     }
@@ -31,7 +35,6 @@ export default class LoginScreen extends React.Component {
       map[key] = value
       return map
     }, {})
-
     const verifier = responseObj.oauth_verifier
     const accessTokenURL = accessTokenEndpoint + this._toQueryString({
       oauth_verifier: verifier,
@@ -44,11 +47,17 @@ export default class LoginScreen extends React.Component {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     }).then(res => res.json())
     const accessTokenResponse = accessTokenResult.accessTokenResponse
-    console.log('accessTokenResponse:', accessTokenResponse)
+    // console.log('accessTokenResponse:', accessTokenResponse)
     const username = accessTokenResponse.screen_name
 
     this.props.login({ username: username })
     Expo.WebBrowser.dismissBrowser()
+  }
+
+  _toQueryString(params) {
+    return '?' + Object.entries(params)
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
   }
 
   _loginWithTwitter = async () => {
@@ -60,12 +69,6 @@ export default class LoginScreen extends React.Component {
     authToken = redirectURLResult.token
     secretToken = redirectURLResult.secretToken
     await Expo.WebBrowser.openBrowserAsync(redirectURLResult.redirectURL)
-  }
-
-  _toQueryString(params) {
-    return '?' + Object.entries(params)
-      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-      .join('&')
   }
 
   render() {

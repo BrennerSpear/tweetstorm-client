@@ -9,7 +9,7 @@ import LoginScreen from './screens/LoginScreen'
 import Router from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
 
-console.log('logs from expo')
+console.log('top of main.js file')
 class AppContainer extends React.Component {
 
   constructor() {
@@ -20,6 +20,7 @@ class AppContainer extends React.Component {
   state = {
     appIsReady: false,
     loggedIn: false,
+    newTweet: true,
     username: 'username not working',
   }
 
@@ -51,20 +52,23 @@ class AppContainer extends React.Component {
   }
 
   _logIn(params) {
+    console.log('_login function')
     this.setState({
       loggedIn: true,
       username: params.username
     })
+    console.log('username:',params.username)
   }
 
   render() {
+    console.log('rendering main')
     if (this.state.appIsReady && this.state.loggedIn) {
       return (
         <View style={styles.container}>
           <NavigationProvider router={Router}>
             <StackNavigation
               id="root"
-              initialRoute={Router.getRoute('rootNavigation')}
+              initialRoute={Router.getRoute('rootNavigation', {test: 'plz be on the router'})}
               username={this.state.username}
             />
           </NavigationProvider>
