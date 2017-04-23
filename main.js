@@ -1,19 +1,29 @@
-import Expo from 'expo';
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { NavigationProvider, StackNavigation } from '@expo/ex-navigation';
-import { FontAwesome } from '@expo/vector-icons';
+import Expo from 'expo'
+import React from 'react'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { NavigationProvider, StackNavigation } from '@expo/ex-navigation'
+import { FontAwesome } from '@expo/vector-icons'
 
-import Router from './navigation/Router';
-import cacheAssetsAsync from './utilities/cacheAssetsAsync';
+import LoginScreen from './screens/LoginScreen'
+
+import Router from './navigation/Router'
+import cacheAssetsAsync from './utilities/cacheAssetsAsync'
 
 class AppContainer extends React.Component {
+
+  constructor() {
+    super()
+    this._logIn = this._logIn.bind(this)
+  }
+
   state = {
     appIsReady: false,
-  };
+    loggedIn: false,
+  }
+
 
   componentWillMount() {
-    this._loadAssetsAsync();
+    this._loadAssetsAsync()
   }
 
   async _loadAssetsAsync() {
@@ -24,20 +34,26 @@ class AppContainer extends React.Component {
           FontAwesome.font,
           { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
         ],
-      });
+      })
     } catch (e) {
       console.warn(
         'There was an error caching assets (see: main.js), perhaps due to a ' +
           'network timeout, so we skipped caching. Reload the app to try again.'
-      );
-      console.log(e.message);
+      )
+      console.log(e.message)
     } finally {
-      this.setState({ appIsReady: true });
+      console.log('app is ready')
+      this.setState({ appIsReady: true })
+      
     }
   }
 
+  _logIn() {
+    this.setState({loggedIn: true})
+  }
+
   render() {
-    if (this.state.appIsReady) {
+    if (this.state.appIsReady && this.state.loggedIn) {
       return (
         <View style={styles.container}>
           <NavigationProvider router={Router}>
@@ -51,9 +67,11 @@ class AppContainer extends React.Component {
           {Platform.OS === 'android' &&
             <View style={styles.statusBarUnderlay} />}
         </View>
-      );
+      )
+    } else if(this.state.appIsReady){
+      return <LoginScreen login={this._logIn}/>
     } else {
-      return <Expo.AppLoading />;
+      return <Expo.AppLoading />
     }
   }
 }
@@ -67,6 +85,6 @@ const styles = StyleSheet.create({
     height: 24,
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
-});
+})
 
-Expo.registerRootComponent(AppContainer);
+Expo.registerRootComponent(AppContainer)
