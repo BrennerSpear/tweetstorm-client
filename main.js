@@ -21,7 +21,7 @@ class AppContainer extends React.Component {
     appIsReady: false,
     loggedIn: false,
     newTweet: true,
-    username: 'username not working',
+    username: 'BLANK',
   }
 
 
@@ -57,9 +57,14 @@ class AppContainer extends React.Component {
       loggedIn: true,
       username: params.username
     })
-    console.log('username:',params.username)
   }
 
+  _profileInfo() {
+    console.log('_profileInfo function')
+    return {
+      username: this.state.username
+    }
+  }
   render() {
     console.log('rendering main')
     if (this.state.appIsReady && this.state.loggedIn) {
@@ -68,8 +73,7 @@ class AppContainer extends React.Component {
           <NavigationProvider router={Router}>
             <StackNavigation
               id="root"
-              initialRoute={Router.getRoute('rootNavigation', {test: 'plz be on the router'})}
-              username={this.state.username}
+              initialRoute={Router.getRoute('rootNavigation', {profileInfo:this._profileInfo()})}
             />
           </NavigationProvider>
 

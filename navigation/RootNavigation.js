@@ -8,6 +8,8 @@ import {
 } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
+import Router from './Router'
+
 import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
 import registerForPushNotificationsAsync
@@ -28,9 +30,10 @@ export default class RootNavigation extends React.Component {
   }
 
   render() {
+    // console.log('root nav prop', this.props.profileInfo.username)
     if(this.state.newTweet) {
       return (
-        <StackNavigation id='newTweet' initialRoute={'newTweet'}/>
+        <StackNavigation id='newTweet' initialRoute={Router.getRoute('newTweet', {profileInfo: this.props.profileInfo})}/>
       )
     }
     else {

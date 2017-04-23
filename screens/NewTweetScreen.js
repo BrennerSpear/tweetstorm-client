@@ -29,7 +29,7 @@ export default class NewTweetScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.middle}>
         This is where a textbox will go
-        {this.props.username}
+        {this.props.profileInfo.username}
         </Text>
       </View>
     )
