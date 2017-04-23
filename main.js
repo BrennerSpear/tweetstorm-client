@@ -9,6 +9,7 @@ import LoginScreen from './screens/LoginScreen'
 import Router from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
 
+console.log('logs from expo')
 class AppContainer extends React.Component {
 
   constructor() {
@@ -19,6 +20,7 @@ class AppContainer extends React.Component {
   state = {
     appIsReady: false,
     loggedIn: false,
+    username: 'username not working',
   }
 
 
@@ -48,8 +50,11 @@ class AppContainer extends React.Component {
     }
   }
 
-  _logIn() {
-    this.setState({loggedIn: true})
+  _logIn(params) {
+    this.setState({
+      loggedIn: true,
+      username: params.username
+    })
   }
 
   render() {
@@ -60,6 +65,7 @@ class AppContainer extends React.Component {
             <StackNavigation
               id="root"
               initialRoute={Router.getRoute('rootNavigation')}
+              username={this.state.username}
             />
           </NavigationProvider>
 
