@@ -14,6 +14,11 @@ import registerForPushNotificationsAsync
   from '../api/registerForPushNotificationsAsync'
 
 export default class RootNavigation extends React.Component {
+
+  state = {
+    newTweet: true
+  }
+
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications()
   }
@@ -23,21 +28,28 @@ export default class RootNavigation extends React.Component {
   }
 
   render() {
-    return (
-      <TabNavigation tabBarHeight={56} initialTab="home">
-        <TabNavigationItem
-          id="home"
-          renderIcon={isSelected => this._renderIcon('home', isSelected)}>
-          <StackNavigation initialRoute="home" />
-        </TabNavigationItem>
+    if(this.state.newTweet) {
+      return (
+        <StackNavigation id='newTweet' initialRoute={'newTweet'}/>
+      )
+    }
+    else {
+      return (
+        <TabNavigation tabBarHeight={56} initialTab="home">
+          <TabNavigationItem
+            id="home"
+            renderIcon={isSelected => this._renderIcon('home', isSelected)}>
+            <StackNavigation initialRoute="home" />
+          </TabNavigationItem>
 
-        <TabNavigationItem
-          id="links"
-          renderIcon={isSelected => this._renderIcon('book', isSelected)}>
-          <StackNavigation initialRoute="links" />
-        </TabNavigationItem>
-      </TabNavigation>
-    )
+          <TabNavigationItem
+            id="links"
+            renderIcon={isSelected => this._renderIcon('book', isSelected)}>
+            <StackNavigation initialRoute="links" />
+          </TabNavigationItem>
+        </TabNavigation>
+      )
+    }
   }
 
   _renderIcon(name, isSelected) {

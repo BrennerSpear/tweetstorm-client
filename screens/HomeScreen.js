@@ -19,11 +19,17 @@ export default class HomeScreen extends React.Component {
     },
   }
 
+  componentDidMount() {
+    console.log('HomeScreen componentDidMount')
+  }
+
   render() {
+    console.log('rendering HomeScreen')
     return (
       <View style={styles.container}>
         <Text style={styles.middle}>
         This is where a textbox will go
+        {this.props.username}
         </Text>
       </View>
     )
