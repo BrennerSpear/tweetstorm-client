@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, Button, StyleSheet } from 'react-native'
 
 export default class LoginScreen extends React.Component {
   static route = {
     navigationBar: {
       title: 'Login',
     },
-  };
+  }
 
   render() {
     return (
@@ -15,7 +15,7 @@ export default class LoginScreen extends React.Component {
         <Text style={styles.title}>Example: Twitter login</Text>
         <Button title="Login to Twitter" onPress={this.props.login} />
       </View>
-    );
+    )
   }
 }
 
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 40,
   },
-});
+})

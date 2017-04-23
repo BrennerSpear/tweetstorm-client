@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Image,
   Linking,
@@ -8,16 +8,16 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
+} from 'react-native'
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../components/StyledText'
 
 export default class HomeScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false,
     },
-  };
+  }
 
   render() {
     return (
@@ -26,14 +26,14 @@ export default class HomeScreen extends React.Component {
         This is where a textbox will go
         </Text>
       </View>
-    );
+    )
   }
 
   _exampleOfLinking = () => {
     Linking.openURL(
       'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
-  };
+    )
+  }
 
 }
 
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
-});
+})

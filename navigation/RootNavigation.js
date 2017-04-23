@@ -1,25 +1,25 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Notifications } from 'expo';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { Notifications } from 'expo'
 import {
   StackNavigation,
   TabNavigation,
   TabNavigationItem,
-} from '@expo/ex-navigation';
-import { FontAwesome } from '@expo/vector-icons';
+} from '@expo/ex-navigation'
+import { FontAwesome } from '@expo/vector-icons'
 
-import Alerts from '../constants/Alerts';
-import Colors from '../constants/Colors';
+import Alerts from '../constants/Alerts'
+import Colors from '../constants/Colors'
 import registerForPushNotificationsAsync
-  from '../api/registerForPushNotificationsAsync';
+  from '../api/registerForPushNotificationsAsync'
 
 export default class RootNavigation extends React.Component {
   componentDidMount() {
-    this._notificationSubscription = this._registerForPushNotifications();
+    this._notificationSubscription = this._registerForPushNotifications()
   }
 
   componentWillUnmount() {
-    this._notificationSubscription && this._notificationSubscription.remove();
+    this._notificationSubscription && this._notificationSubscription.remove()
   }
 
   render() {
@@ -37,7 +37,7 @@ export default class RootNavigation extends React.Component {
           <StackNavigation initialRoute="links" />
         </TabNavigationItem>
       </TabNavigation>
-    );
+    )
   }
 
   _renderIcon(name, isSelected) {
@@ -47,7 +47,7 @@ export default class RootNavigation extends React.Component {
         size={32}
         color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
-    );
+    )
   }
 
   _registerForPushNotifications() {
@@ -55,20 +55,20 @@ export default class RootNavigation extends React.Component {
     // You can comment the following line out if you want to stop receiving
     // a notification every time you open the app. Check out the source
     // for this function in api/registerForPushNotificationsAsync.js
-    registerForPushNotificationsAsync();
+    registerForPushNotificationsAsync()
 
     // Watch for incoming notifications
     this._notificationSubscription = Notifications.addListener(
       this._handleNotification
-    );
+    )
   }
 
   _handleNotification = ({ origin, data }) => {
     this.props.navigator.showLocalAlert(
       `Push notification ${origin} with data: ${JSON.stringify(data)}`,
       Alerts.notice
-    );
-  };
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   selectedTab: {
     color: Colors.tabIconSelected,
   },
-});
+})
