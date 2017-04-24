@@ -29,17 +29,10 @@ export default class NewTweetTopBar extends React.Component {
     console.log('rendering NewTweetTopBar')
     return (
         <View style={styles.topView}>
-
           <View style={styles.topViewLeft}>
-            <View style={styles.profPicContainer}>
-              <Image style={styles.profPicImage} source={require('../assets/icons/notification-icon.png')}/>
-            </View>
-
-            <View style={styles.center}>
-              <Text>@{this.props.profileInfo.username}</Text>
-            </View>
+            <Image style={styles.profPicImage} source={require('../assets/icons/notification-icon.png')}/>
+            <Text>@{this.props.profileInfo.username}</Text>
           </View>
-
           <View style={styles.xbutton}>
           {this._renderIcon('times', iconSize, iconColor)}
           </View>
@@ -61,33 +54,21 @@ const styles = StyleSheet.create({
   topViewLeft: {
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center'
     // backgroundColor: 'green',
-  },
-  profPicContainer: {
-    // backgroundColor: 'skyblue',
-    justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
   },
   profPicImage: {
     height: iconSize,
     width: iconSize,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
     resizeMode: 'contain'
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    // backgroundColor: 'powderblue', 
-    // width: 80,
-    // height: 50,
   },
   xbutton: {
     justifyContent: 'center',
     paddingRight: 10,
     // backgroundColor: 'steelblue',
-    // height: 50,
-    // width: 50
   },
 })
