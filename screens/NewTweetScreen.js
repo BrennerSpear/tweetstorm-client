@@ -29,6 +29,7 @@ export default class NewTweetScreen extends React.Component {
         name={name}
         size={size}
         color='#58AEF0'
+        onPress={this.props.exit}
       />
     )
   }

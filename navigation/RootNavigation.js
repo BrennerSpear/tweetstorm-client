@@ -16,10 +16,16 @@ import Colors from '../constants/Colors'
   // from '../api/registerForPushNotificationsAsync'
 
 export default class RootNavigation extends React.Component {
+  constructor() {
+    super()
+    this._exitNewTweet = this._exitNewTweet.bind(this)
+    this._startNewTweet = this._startNewTweet.bind(this)
+  }
 
   state = {
     newTweet: true
   }
+
 
   componentDidMount() {
     // this._notificationSubscription = this._registerForPushNotifications()
@@ -32,7 +38,13 @@ export default class RootNavigation extends React.Component {
   render() {
     if(this.state.newTweet) {
       return (
-        <StackNavigation id='newTweet' initialRoute={Router.getRoute('newTweet', {profileInfo: this.props.profileInfo})}/>
+        <StackNavigation
+          id='newTweet'
+          initialRoute={
+            Router.getRoute('newTweet',
+            {profileInfo: this.props.profileInfo,
+             exit: this._exitNewTweet})}
+        />
       )
     }
     else {
@@ -52,6 +64,14 @@ export default class RootNavigation extends React.Component {
         </TabNavigation>
       )
     }
+  }
+
+  _exitNewTweet() {
+    this.setState({newTweet: false})
+  }
+
+  _startNewTweet() {
+    this.setState({newTweet: true})
   }
 
   _renderIcon(name, isSelected) {

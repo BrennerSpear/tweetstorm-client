@@ -12,5 +12,5 @@ export default createRouter(() => ({
   newTweet: () => NewTweetScreen,
   home: () => HomeScreen,
   links: () => LinksScreen,
-  rootNavigation: () => RootNavigation,
-}))
+  rootNavigation: () => RootNavigation
+}), {ignoreSerializableWarnings: true})
