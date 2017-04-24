@@ -27,10 +27,16 @@ export default class NewTweetScreen extends React.Component {
     console.log('rendering NewTweetScreen')
     return (
       <View style={styles.container}>
-        <Text style={styles.middle}>
-        This is where a textbox will go
-        {this.props.profileInfo.username}
-        </Text>
+        <View style={styles.topView}>
+          <View style={styles.topViewLeft}>
+            <View style={styles.profPic} />
+            <Text style={styles.username}>{this.props.profileInfo.username}</Text>
+          </View>
+          <View style={styles.xbutton} />
+        </View>
+        <View style={styles.mainArea}>
+        <Text> Main area</Text>
+        </View>
       </View>
     )
   }
@@ -40,8 +46,41 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'black',
+    marginTop: 25
   },
+  topView: {
+    flexDirection: 'row',
+    backgroundColor: 'red',
+    height: 50
+  },
+  topViewLeft: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'green',
+  },
+  profPic: {
+    backgroundColor: 'skyblue',
+    height: 50,
+    width: 50
+  },
+  username: {
+    backgroundColor: 'powderblue',
+    height: 50,
+    width: 80
+  },
+  xbutton: {
+    backgroundColor: 'steelblue',
+    height: 50,
+    width: 50
+  },
+  mainArea: {
+    flex: 1,
+    backgroundColor: 'grey'
+  }
 })
+
+
+   /*     {<Text style={styles.middle}>
+        This is where a textbox will go
+        {this.props.profileInfo.username}
+        </Text>} */

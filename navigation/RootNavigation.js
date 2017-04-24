@@ -30,7 +30,6 @@ export default class RootNavigation extends React.Component {
   }
 
   render() {
-    // console.log('root nav prop', this.props.profileInfo.username)
     if(this.state.newTweet) {
       return (
         <StackNavigation id='newTweet' initialRoute={Router.getRoute('newTweet', {profileInfo: this.props.profileInfo})}/>
