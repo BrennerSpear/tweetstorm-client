@@ -1,12 +1,8 @@
 import React from 'react'
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TextInput,
   View,
 } from 'react-native'
 
@@ -14,6 +10,11 @@ import NewTweetTopBar from '../components/NewTweetTopBar'
 import { FontAwesome } from '@expo/vector-icons'
 
 export default class NewTweetScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {text: ''}
+  }
+
   static route = {
     navigationBar: {
       visible: false,
@@ -32,15 +33,18 @@ export default class NewTweetScreen extends React.Component {
         <NewTweetTopBar profileInfo={this.props.profileInfo} exit={this.props.exit} />
 
         <View style={styles.mainArea}>
-          <Text> Main area</Text>
+          <TextInput
+            style={styles.mainInput}
+            placeholder="Tweetstorm away!"
+            multiline = {true}
+            onChangeText={(text) => this.setState({text})}
+          />
         </View>
 
       </View>
     )
   }
 }
-
-const iconSize = 32
 
 const styles = StyleSheet.create({
   container: {
@@ -50,6 +54,14 @@ const styles = StyleSheet.create({
   },
   mainArea: {
     flex: 1,
-    backgroundColor: 'grey'
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    // backgroundColor: '#fff'
+  },
+  mainInput: {
+    flex: 1,
+    fontSize: 20
   }
 })
