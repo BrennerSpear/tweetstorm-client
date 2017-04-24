@@ -14,12 +14,12 @@ export default class NewTweetTopBar extends React.Component {
     console.log('NewTweetTopBar componentDidMount')
   }
 
-  _renderIcon(name, size) {
+  _renderIcon(name, size, color) {
     return (
       <FontAwesome
         name={name}
         size={size}
-        color='#58AEF0'
+        color={color}
         onPress={this.props.exit}
       />
     )
@@ -41,7 +41,7 @@ export default class NewTweetTopBar extends React.Component {
           </View>
 
           <View style={styles.xbutton}>
-          {this._renderIcon('times', iconSize)}
+          {this._renderIcon('times', iconSize, iconColor)}
           </View>
 
         </View>
@@ -50,6 +50,7 @@ export default class NewTweetTopBar extends React.Component {
 }
 
 const iconSize = 32
+const iconColor ='#58AEF0'
 
 const styles = StyleSheet.create({
   topView: {

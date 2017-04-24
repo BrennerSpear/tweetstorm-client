@@ -22,6 +22,17 @@ export default class NewTweetScreen extends React.Component {
     },
   }
 
+  _renderIcon(name, size, color, style) {
+    return (
+      <FontAwesome
+        name={name}
+        size={size}
+        color={color}
+        style={style}
+      />
+    )
+  }
+
   componentDidMount() {
     console.log('NewTweetScreen componentDidMount')
   }
@@ -43,10 +54,24 @@ export default class NewTweetScreen extends React.Component {
           />
         </ScrollView>
         
+
+        <View style={styles.optionsBar}>
+          <View style={styles.left}>
+            {this._renderIcon('camera', iconSize, iconColor, styles.icon)}
+            {this._renderIcon('gear', iconSize, iconColor, styles.icon)}
+          </View>
+
+          <View style={styles.right}>
+            <Text>Button</Text>
+          </View>
+        </View>
       </View>
     )
   }
 }
+
+const iconSize = 25
+const iconColor = '#8899A6'
 
 const styles = StyleSheet.create({
   container: {
@@ -60,11 +85,34 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 10,
-    // backgroundColor: 'grey'
+    backgroundColor: 'grey'
   },
   mainInput: {
     flex: 1,
     fontSize: 20,
     // backgroundColor: 'grey'
+  },
+  optionsBar: {
+    height: 50,
+    flexDirection: 'row'
+  },
+  left: {
+    flex: 8,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  right: {
+    // flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 15,
+    // backgroundColor: 'blue'
+  },
+  vAlign: {
+    justifyContent: 'center'
+  },
+  icon: {
+    paddingRight: 10,
+    paddingLeft: 10,
   }
 })
