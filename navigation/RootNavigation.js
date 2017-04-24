@@ -10,7 +10,7 @@ import { FontAwesome } from '@expo/vector-icons'
 
 import Router from './Router'
 
-import Alerts from '../constants/Alerts'
+// import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
 // import registerForPushNotificationsAsync
   // from '../api/registerForPushNotificationsAsync'
