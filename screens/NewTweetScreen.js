@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   View,
+  ScrollView
 } from 'react-native'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
@@ -32,15 +33,16 @@ export default class NewTweetScreen extends React.Component {
 
         <NewTweetTopBar profileInfo={this.props.profileInfo} exit={this.props.exit} />
 
-        <View style={styles.mainArea}>
+        
+        <ScrollView style={styles.mainArea} contentContainerStyle={{flex: 1}}>
           <TextInput
             style={styles.mainInput}
             placeholder="Tweetstorm away!"
             multiline = {true}
             onChangeText={(text) => this.setState({text})}
           />
-        </View>
-
+        </ScrollView>
+        
       </View>
     )
   }
@@ -58,10 +60,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 10,
-    // backgroundColor: '#fff'
+    // backgroundColor: 'grey'
   },
   mainInput: {
     flex: 1,
-    fontSize: 20
+    fontSize: 20,
+    // backgroundColor: 'grey'
   }
 })
