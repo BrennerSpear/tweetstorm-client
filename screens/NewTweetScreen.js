@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 10,
-    backgroundColor: 'grey'
+    // backgroundColor: 'grey'
   },
   mainInput: {
     flex: 1,
@@ -107,9 +107,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingRight: 15,
     // backgroundColor: 'blue'
-  },
-  vAlign: {
-    justifyContent: 'center'
   },
   icon: {
     paddingRight: 10,
