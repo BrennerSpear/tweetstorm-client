@@ -30,7 +30,9 @@ export default class NewTweetScreen extends React.Component {
         <View style={styles.topView}>
           <View style={styles.topViewLeft}>
             <View style={styles.profPic} />
-            <Text style={styles.username}>{this.props.profileInfo.username}</Text>
+            <View style={styles.center}>
+              <Text>{this.props.profileInfo.username}</Text>
+            </View>
           </View>
           <View style={styles.xbutton} />
         </View>
@@ -63,10 +65,12 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50
   },
-  username: {
-    backgroundColor: 'powderblue',
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'powderblue', 
+    width: 80,
     height: 50,
-    width: 80
   },
   xbutton: {
     backgroundColor: 'steelblue',
