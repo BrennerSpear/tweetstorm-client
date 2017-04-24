@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native'
 
-import { MonoText } from '../components/StyledText'
+import { FontAwesome } from '@expo/vector-icons'
 
 export default class NewTweetScreen extends React.Component {
   static route = {
@@ -31,7 +31,7 @@ export default class NewTweetScreen extends React.Component {
           <View style={styles.topViewLeft}>
             <View style={styles.profPic} />
             <View style={styles.center}>
-              <Text>{this.props.profileInfo.username}</Text>
+              <Text>@{this.props.profileInfo.username}</Text>
             </View>
           </View>
           <View style={styles.xbutton} />
@@ -48,33 +48,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 25
+    paddingTop: 16
   },
   topView: {
     flexDirection: 'row',
     backgroundColor: 'red',
-    height: 50
+    height: 30
   },
   topViewLeft: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
   },
   profPic: {
     backgroundColor: 'skyblue',
-    height: 50,
-    width: 50
+    // height: 50,
+    width: 10
   },
   center: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'powderblue', 
     width: 80,
-    height: 50,
+    // height: 50,
   },
   xbutton: {
     backgroundColor: 'steelblue',
-    height: 50,
+    // height: 50,
     width: 50
   },
   mainArea: {
