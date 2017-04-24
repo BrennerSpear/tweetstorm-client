@@ -23,6 +23,16 @@ export default class NewTweetScreen extends React.Component {
     console.log('NewTweetScreen componentDidMount')
   }
 
+  _renderIcon(name) {
+    return (
+      <FontAwesome
+        name={name}
+        size={24}
+        color='#58AEF0'
+      />
+    )
+  }
+
   render() {
     console.log('rendering NewTweetScreen')
     return (
@@ -34,7 +44,9 @@ export default class NewTweetScreen extends React.Component {
               <Text>@{this.props.profileInfo.username}</Text>
             </View>
           </View>
-          <View style={styles.xbutton} />
+          <View style={styles.xbutton}>
+          {this._renderIcon('times')}
+          </View>
         </View>
         <View style={styles.mainArea}>
         <Text> Main area</Text>
@@ -52,7 +64,7 @@ const styles = StyleSheet.create({
   },
   topView: {
     flexDirection: 'row',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     height: 30
   },
   topViewLeft: {
@@ -61,21 +73,23 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
   },
   profPic: {
-    backgroundColor: 'skyblue',
+    // backgroundColor: 'skyblue',
     // height: 50,
     width: 10
   },
   center: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'powderblue', 
-    width: 80,
+    // backgroundColor: 'powderblue', 
+    // width: 80,
     // height: 50,
   },
   xbutton: {
-    backgroundColor: 'steelblue',
+    justifyContent: 'center',
+    paddingRight: 10,
+    // backgroundColor: 'steelblue',
     // height: 50,
-    width: 50
+    // width: 50
   },
   mainArea: {
     flex: 1,
