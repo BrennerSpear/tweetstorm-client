@@ -10,9 +10,14 @@ import {
   View,
 } from 'react-native'
 
+import HomePageTopBar from '../components/HomePageTopBar'
 import { MonoText } from '../components/StyledText'
 
 export default class HomeScreen extends React.Component {
+    constructor(props) {
+    super(props)
+  }
+
   static route = {
     navigationBar: {
       visible: false,
@@ -27,10 +32,7 @@ export default class HomeScreen extends React.Component {
     console.log('rendering HomeScreen')
     return (
       <View style={styles.container}>
-        <Text style={styles.middle}>
-        This is where a textbox will go
-        {this.props.username}
-        </Text>
+        <HomePageTopBar  profileInfo={this.props.profileInfo} newTweet={this.props.newTweet}/>
       </View>
     )
   }
@@ -47,9 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'black',
+    paddingTop: 16,
   },
   middle: {
     alignItems: 'center',

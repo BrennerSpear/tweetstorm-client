@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   topView: {
     flexDirection: 'row',
     // backgroundColor: 'red',
-    height: 50
+    height: Sizes.topBar.height
   },
   topViewLeft: {
     flex: 1,

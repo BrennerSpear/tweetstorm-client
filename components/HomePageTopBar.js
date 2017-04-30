@@ -6,29 +6,20 @@ import {
   View,
 } from 'react-native'
 
+import Icon from './Icon'
 
 import { FontAwesome } from '@expo/vector-icons'
+import Colors from '../constants/Colors'
+import Sizes from '../constants/Sizes'
 
-
-export default class NewTweetTopBar extends React.Component {
+export default class HomePageTopBar extends React.Component {
 
   componentDidMount() {
-    console.log('NewTweetTopBar componentDidMount')
-  }
-
-  _renderIcon(name, size, color) {
-    return (
-      <FontAwesome
-        name={name}
-        size={size}
-        color={color}
-        // onPress={this.props.exit}
-      />
-    )
+    console.log('HomePageTopBar componentDidMount')
   }
 
   render() {
-    console.log('rendering NewTweetTopBar')
+    console.log('rendering HomePageTopBar')
     return (
         <View style={styles.topView}>
           <View style={styles.topViewLeft}>
@@ -36,22 +27,19 @@ export default class NewTweetTopBar extends React.Component {
             <Text>@{this.props.profileInfo.username}</Text>
           </View>
           <View style={styles.xbutton}>
-          {this._renderIcon('pencil-square-o', iconSize, iconColor)}
+          {Icon('pencil-square-o', 'medium', 'twitterBlue', null, this.props.newTweet)}
           </View>
-
         </View>
     )
   }
 }
 
-const iconSize = 32
-const iconColor ='#58AEF0'
-
 const styles = StyleSheet.create({
   topView: {
     flexDirection: 'row',
-    // backgroundColor: 'red',
-    height: 50
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Sizes.topBar.height
   },
   topViewLeft: {
     flex: 1,
@@ -60,8 +48,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
   },
   profPicImage: {
-    height: iconSize,
-    width: iconSize,
+    height: Sizes.icon.medium,
+    width: Sizes.icon.medium,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
@@ -69,7 +57,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   xbutton: {
-    justifyContent: 'center',
+    // justifyContent: 'right',
     paddingRight: 10,
     // backgroundColor: 'steelblue',
   },
