@@ -14,10 +14,21 @@ import { FontAwesome } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
+import SplitTweets from '../utilities/splitTweets'
+
 export default class NewTweetScreen extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {text: ''}
+    this.state = {
+      text: '',
+      tweets: null,
+      prefixOption: 'slash',
+      charsLeft: 137,
+      errorMsg:'',
+      errors:false
+    }
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
   static route = {
@@ -28,6 +39,32 @@ export default class NewTweetScreen extends React.Component {
 
   componentDidMount() {
     console.log('NewTweetScreen componentDidMount')
+  }
+
+  handleErrors() {
+    if(this.state.tweetBody === '') {
+      this.setState({errorMsg: "You didn't write anything"})
+      return true
+    }
+    return false
+  }
+
+  handleChange(e) {
+    const text = e.text
+    const tweets = SplitTweets.splitTweets(text, this.state.prefixOption)
+    const charsLeft = this.calculateCharsLeft(tweets)
+    this.setState({
+      text: text,
+      tweets: tweets,
+      charsLeft: charsLeft
+    })
+    console.log(tweets)
+  }
+
+  calculateCharsLeft(tweetsArray) {
+    var lastTweet = tweetsArray[tweetsArray.length-1] || '1/ '
+    var charsLeft = 140 - lastTweet.length
+    return charsLeft
   }
 
   render() {
@@ -43,7 +80,7 @@ export default class NewTweetScreen extends React.Component {
             style={styles.mainInput}
             placeholder="Tweetstorm away!"
             multiline = {true}
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={(text) => this.handleChange({text})}
           />
         </ScrollView>
         
@@ -55,6 +92,7 @@ export default class NewTweetScreen extends React.Component {
           </View>
 
           <View style={styles.right}>
+            <Text>{this.state.charsLeft}</Text>
             <Text>Button</Text>
           </View>
         </View>
