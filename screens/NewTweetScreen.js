@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 16
+    paddingTop: Sizes.statusBar.paddingTop
   },
   mainArea: {
     flex: 1,

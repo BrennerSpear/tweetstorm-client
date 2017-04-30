@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 import HomePageTopBar from '../components/HomePageTopBar'
+import Sizes from '../constants/Sizes'
 import { MonoText } from '../components/StyledText'
 
 export default class HomeScreen extends React.Component {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 16,
+    paddingTop: Sizes.statusBar.paddingTop,
   },
   middle: {
     alignItems: 'center',

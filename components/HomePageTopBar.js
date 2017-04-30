@@ -22,13 +22,9 @@ export default class HomePageTopBar extends React.Component {
     console.log('rendering HomePageTopBar')
     return (
         <View style={styles.topView}>
-          <View style={styles.topViewLeft}>
-            <Image style={styles.profPicImage} source={require('../assets/icons/notification-icon.png')}/>
-            <Text>@{this.props.profileInfo.username}</Text>
-          </View>
-          <View style={styles.xbutton}>
+          {Icon('pencil-square-o', 'medium', 'white')}
+          {Icon('twitter', 'medium', 'twitterBlue')}
           {Icon('pencil-square-o', 'medium', 'twitterBlue', null, this.props.newTweet)}
-          </View>
         </View>
     )
   }
@@ -37,9 +33,13 @@ export default class HomePageTopBar extends React.Component {
 const styles = StyleSheet.create({
   topView: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    height: Sizes.topBar.height
+    paddingRight: 10,
+    paddingLeft: 10,
+    height: Sizes.topBar.height,
+    borderBottomColor: Colors.twitterGrey,
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   topViewLeft: {
     flex: 1,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   xbutton: {
-    // justifyContent: 'right',
+    justifyContent: 'center',
     paddingRight: 10,
     // backgroundColor: 'steelblue',
   },

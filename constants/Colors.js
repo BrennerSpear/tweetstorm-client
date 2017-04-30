@@ -13,5 +13,6 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   twitterBlue: '#58AEF0',
-  twitterGrey: '#8899A6'
+  twitterGrey: '#8899A6',
+  white: '#ffffff'
 };

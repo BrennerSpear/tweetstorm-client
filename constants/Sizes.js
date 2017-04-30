@@ -6,5 +6,8 @@ export default {
   },
   topBar: {
     height: 50
+  },
+  statusBar: {
+    paddingTop: 20
   }
 }

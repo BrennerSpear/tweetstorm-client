@@ -28,7 +28,6 @@ export default class RootNavigation extends React.Component {
     newTweet: true
   }
 
-
   componentDidMount() {
     // this._notificationSubscription = this._registerForPushNotifications()
   }
@@ -84,16 +83,6 @@ export default class RootNavigation extends React.Component {
   _color(isSelected) {
     return isSelected ? 'twitterBlue' : 'twitterGrey'
   }
-
-  // _renderIcon(name, isSelected) {
-  //   return (
-  //     <FontAwesome
-  //       name={name}
-  //       size={32}
-  //       color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
-  //     />
-  //   )
-  // }
 
   // _registerForPushNotifications() {
   //   // Send our push token over to our backend so we can receive notifications
