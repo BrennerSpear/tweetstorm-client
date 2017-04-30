@@ -1,5 +1,6 @@
 const tintColor = '#2f95dc';
 
+
 export default {
   tintColor,
   tabIconDefault: '#888',
@@ -11,5 +12,6 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  twitterBlue: '#58AEF0'
+  twitterBlue: '#58AEF0',
+  twitterGrey: '#8899A6'
 };

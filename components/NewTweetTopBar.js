@@ -27,7 +27,7 @@ export default class NewTweetTopBar extends React.Component {
             <Text>@{this.props.profileInfo.username}</Text>
           </View>
           <View style={styles.xbutton}>
-          {Icon('times', 'medium', 'twitterBlue', this.props.exit)}
+          {Icon('times', 'medium', 'twitterBlue', null, this.props.exit)}
           </View>
 
         </View>

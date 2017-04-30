@@ -8,7 +8,10 @@ import {
 } from 'react-native'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
+import Icon from '../components/Icon'
 import { FontAwesome } from '@expo/vector-icons'
+import Colors from '../constants/Colors'
+import Sizes from '../constants/Sizes'
 
 export default class NewTweetScreen extends React.Component {
   constructor(props) {
@@ -20,17 +23,6 @@ export default class NewTweetScreen extends React.Component {
     navigationBar: {
       visible: false,
     },
-  }
-
-  _renderIcon(name, size, color, style) {
-    return (
-      <FontAwesome
-        name={name}
-        size={size}
-        color={color}
-        style={style}
-      />
-    )
   }
 
   componentDidMount() {
@@ -57,8 +49,8 @@ export default class NewTweetScreen extends React.Component {
 
         <View style={styles.optionsBar}>
           <View style={styles.left}>
-            {this._renderIcon('camera', iconSize, iconColor, styles.icon)}
-            {this._renderIcon('gear', iconSize, iconColor, styles.icon)}
+            {Icon('camera', 'small', 'twitterGrey', styles.icon)}
+            {Icon('gear', 'small', 'twitterGrey', styles.icon)}
           </View>
 
           <View style={styles.right}>
@@ -69,9 +61,6 @@ export default class NewTweetScreen extends React.Component {
     )
   }
 }
-
-const iconSize = 25
-const iconColor = '#8899A6'
 
 const styles = StyleSheet.create({
   container: {
