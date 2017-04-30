@@ -6,6 +6,7 @@ import {
   View,
   ScrollView
 } from 'react-native'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
 import Icon from '../components/Icon'
@@ -57,7 +58,11 @@ export default class NewTweetScreen extends React.Component {
             <Text>Button</Text>
           </View>
         </View>
+
+        <KeyboardSpacer/>
+
       </View>
+
     )
   }
 }
@@ -83,7 +88,9 @@ const styles = StyleSheet.create({
   },
   optionsBar: {
     height: 50,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderTopColor: Colors.twitterGrey,
+    borderTopWidth: StyleSheet.hairlineWidth
   },
   left: {
     flex: 8,
