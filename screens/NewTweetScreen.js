@@ -92,7 +92,7 @@ export default class NewTweetScreen extends React.Component {
           </View>
 
           <View style={styles.right}>
-            <Text>{this.state.charsLeft}</Text>
+            <Text style={styles.charsLeft}>{this.state.charsLeft}</Text>
             <Text>Button</Text>
           </View>
         </View>
@@ -136,11 +136,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   right: {
-    // flex: 2,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 15,
     // backgroundColor: 'blue'
+  },
+  charsLeft: {
+    paddingRight: 15
   },
   icon: {
     paddingRight: 10,
