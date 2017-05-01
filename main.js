@@ -19,7 +19,7 @@ class AppContainer extends React.Component {
 
   state = {
     appIsReady: false,
-    loggedIn: true,
+    loggedIn: false,
     newTweet: true,
     username: 'USERNAME',
   }

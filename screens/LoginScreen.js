@@ -19,10 +19,10 @@ export default class LoginScreen extends React.Component {
   }
 
   componentDidMount() {
-    Linking.addEventListener('url', this._handleTwitterRedirect)
+    Linking.addEventListener('url', this.handleTwitterRedirect)
   }
 
-  _handleTwitterRedirect = async (event) => {
+  handleTwitterRedirect = async (event) => {
     // console.log('event test:', event)
     if (!event.url.includes('+/redirect')) {
       return
@@ -36,7 +36,7 @@ export default class LoginScreen extends React.Component {
       return map
     }, {})
     const verifier = responseObj.oauth_verifier
-    const accessTokenURL = accessTokenEndpoint + this._toQueryString({
+    const accessTokenURL = accessTokenEndpoint + this.toQueryString({
       oauth_verifier: verifier,
       oauth_token: authToken,
       oauth_token_secret: secretToken,
@@ -54,13 +54,13 @@ export default class LoginScreen extends React.Component {
     Expo.WebBrowser.dismissBrowser()
   }
 
-  _toQueryString(params) {
+  toQueryString(params) {
     return '?' + Object.entries(params)
       .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
       .join('&')
   }
 
-  _loginWithTwitter = async () => {
+  loginWithTwitter = async () => {
     // Call your backend to get the redirect URL, Expo will take care of redirecting the user.
     const redirectURLResult = await fetch(redirectURLEndpoint, {
       method: 'GET',
@@ -76,7 +76,7 @@ export default class LoginScreen extends React.Component {
       <View
         style={styles.container}>
         <Text style={styles.title}>Example: Twitter login</Text>
-        <Button title="Login to Twitter" onPress={this._loginWithTwitter} />
+        <Button title="Login to Twitter" onPress={this.loginWithTwitter} />
       </View>
     )
   }
