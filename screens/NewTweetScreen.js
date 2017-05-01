@@ -4,9 +4,12 @@ import {
   Text,
   TextInput,
   View,
-  ScrollView
+  ScrollView,
+  Button
 } from 'react-native'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+
+import Router from '../navigation/Router'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
 import Icon from '../components/Icon'
@@ -24,11 +27,11 @@ export default class NewTweetScreen extends React.Component {
       tweets: null,
       prefixOption: 'slash',
       charsLeft: 137,
-      errorMsg:'',
-      errors:false
+      blank: true
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.preview = this.preview.bind(this)
   }
 
   static route = {
@@ -41,30 +44,30 @@ export default class NewTweetScreen extends React.Component {
     console.log('NewTweetScreen componentDidMount')
   }
 
-  handleErrors() {
-    if(this.state.tweetBody === '') {
-      this.setState({errorMsg: "You didn't write anything"})
-      return true
-    }
-    return false
-  }
-
   handleChange(e) {
     const text = e.text
     const tweets = SplitTweets.splitTweets(text, this.state.prefixOption)
     const charsLeft = this.calculateCharsLeft(tweets)
+    const blank = (text === '')
     this.setState({
       text: text,
       tweets: tweets,
-      charsLeft: charsLeft
+      charsLeft: charsLeft,
+      blank: blank
     })
-    console.log(tweets)
+    // console.log(tweets)
   }
 
   calculateCharsLeft(tweetsArray) {
     var lastTweet = tweetsArray[tweetsArray.length-1] || '1/ '
     var charsLeft = 140 - lastTweet.length
     return charsLeft
+  }
+
+  preview() {
+    if(!this.state.blank) {
+      this.props.navigator.push(Router.getRoute('preview'))
+    }
   }
 
   render() {
@@ -93,7 +96,7 @@ export default class NewTweetScreen extends React.Component {
 
           <View style={styles.right}>
             <Text style={styles.charsLeft}>{this.state.charsLeft}</Text>
-            <Text>Button</Text>
+            <Button onPress={this.preview} title="Preview" color={Colors.twitterBlue}/>
           </View>
         </View>
 
