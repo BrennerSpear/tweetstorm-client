@@ -13,7 +13,6 @@ import Router from '../navigation/Router'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
 import Icon from '../components/Icon'
-import { FontAwesome } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
@@ -66,7 +65,7 @@ export default class NewTweetScreen extends React.Component {
 
   preview() {
     if(!this.state.blank) {
-      this.props.navigator.push(Router.getRoute('preview'))
+      this.props.navigator.push(Router.getRoute('preview', {tweets: this.state.tweets}))
     }
   }
 

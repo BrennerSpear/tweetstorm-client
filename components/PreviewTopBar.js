@@ -1,8 +1,6 @@
 import React from 'react'
 import {
-  Image,
   StyleSheet,
-  Text,
   View,
 } from 'react-native'
 
@@ -10,19 +8,17 @@ import Icon from './Icon'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
-export default class HomePageTopBar extends React.Component {
+export default class PreviewTopBar extends React.Component {
 
   componentDidMount() {
-    console.log('HomePageTopBar componentDidMount')
+    console.log('PreviewTopBar componentDidMount')
   }
 
   render() {
-    console.log('rendering HomePageTopBar')
+    console.log('rendering PreviewTopBar')
     return (
         <View style={styles.topBar}>
-          {Icon('pencil-square-o', 'medium', 'white')}
           {Icon('twitter', 'medium', 'twitterBlue')}
-          {Icon('pencil-square-o', 'medium', 'twitterBlue', null, this.props.newTweet)}
         </View>
     )
   }
@@ -31,10 +27,8 @@ export default class HomePageTopBar extends React.Component {
 const styles = StyleSheet.create({
   topBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingRight: 10,
-    paddingLeft: 10,
     height: Sizes.topBar.height,
     borderBottomColor: Colors.twitterGrey,
     borderBottomWidth: StyleSheet.hairlineWidth

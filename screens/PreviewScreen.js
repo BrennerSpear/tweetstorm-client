@@ -10,9 +10,11 @@ import {
 import Router from '../navigation/Router'
 
 import Icon from '../components/Icon'
-import { FontAwesome } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
+
+import PreviewTopBar from '../components/PreviewTopBar'
+import Tweet from '../components/Tweet'
 
 export default class PreviewScreen extends React.Component {
   constructor(props) {
@@ -31,12 +33,24 @@ export default class PreviewScreen extends React.Component {
   }
 
   goBack = () => {
-    console.log('nav:', this.props.navigator)
     this.props.navigator.pop()
-  };
+  }
 
   tweet() {
     console.log('tweeted!')
+  }
+
+  renderTweets = () => {
+    var tweetsInViews = []
+    var tweets = this.props.tweets
+
+    for(var i=0; i < tweets.length; i++) {
+      tweetsInViews.push(
+        <Tweet text={tweets[i]} key={i}/>
+      )
+    }
+
+    return tweetsInViews
   }
 
   render() {
@@ -44,10 +58,10 @@ export default class PreviewScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        {/*TopBar*/}
+        <PreviewTopBar />
         
         <ScrollView style={styles.mainArea} contentContainerStyle={{flex: 1}}>
-          {/*tweets*/}
+          {this.renderTweets()}
         </ScrollView>
 
         <View style={styles.optionsBar}>
@@ -79,7 +93,10 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     borderTopColor: Colors.twitterGrey,
-    borderTopWidth: StyleSheet.hairlineWidth
+    borderTopWidth: StyleSheet.hairlineWidth,
+    paddingRight: 10,
+    paddingLeft: 10
   }
 })
