@@ -4,16 +4,33 @@ import {
   Text,
   TextInput,
   View,
-  ScrollView
+  ScrollView,
+  Button
 } from 'react-native'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+
+import Router from '../navigation/Router'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
-import { FontAwesome } from '@expo/vector-icons'
+import Icon from '../components/Icon'
+import Colors from '../constants/Colors'
+import Sizes from '../constants/Sizes'
+
+import SplitTweets from '../utilities/splitTweets'
 
 export default class NewTweetScreen extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {text: ''}
+    this.state = {
+      text: '',
+      tweets: null,
+      prefixOption: 'slash',
+      charsLeft: 137,
+      blank: true
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.preview = this.preview.bind(this)
   }
 
   static route = {
@@ -22,19 +39,34 @@ export default class NewTweetScreen extends React.Component {
     },
   }
 
-  _renderIcon(name, size, color, style) {
-    return (
-      <FontAwesome
-        name={name}
-        size={size}
-        color={color}
-        style={style}
-      />
-    )
-  }
-
   componentDidMount() {
     console.log('NewTweetScreen componentDidMount')
+  }
+
+  handleChange(e) {
+    const text = e.text
+    const tweets = SplitTweets.splitTweets(text, this.state.prefixOption)
+    const charsLeft = this.calculateCharsLeft(tweets)
+    const blank = (text === '')
+    this.setState({
+      text: text,
+      tweets: tweets,
+      charsLeft: charsLeft,
+      blank: blank
+    })
+    // console.log(tweets)
+  }
+
+  calculateCharsLeft(tweetsArray) {
+    var lastTweet = tweetsArray[tweetsArray.length-1] || '1/ '
+    var charsLeft = 140 - lastTweet.length
+    return charsLeft
+  }
+
+  preview() {
+    if(!this.state.blank) {
+      this.props.navigator.push(Router.getRoute('preview', {tweets: this.state.tweets}))
+    }
   }
 
   render() {
@@ -50,34 +82,36 @@ export default class NewTweetScreen extends React.Component {
             style={styles.mainInput}
             placeholder="Tweetstorm away!"
             multiline = {true}
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={(text) => this.handleChange({text})}
           />
         </ScrollView>
         
 
         <View style={styles.optionsBar}>
           <View style={styles.left}>
-            {this._renderIcon('camera', iconSize, iconColor, styles.icon)}
-            {this._renderIcon('gear', iconSize, iconColor, styles.icon)}
+            {Icon('camera', 'small', 'twitterGrey', styles.icon)}
+            {Icon('gear', 'small', 'twitterGrey', styles.icon)}
           </View>
 
           <View style={styles.right}>
-            <Text>Button</Text>
+            <Text style={styles.charsLeft}>{this.state.charsLeft}</Text>
+            <Button onPress={this.preview} title="Preview" color={Colors.twitterBlue}/>
           </View>
         </View>
+
+        <KeyboardSpacer/>
+
       </View>
+
     )
   }
 }
-
-const iconSize = 25
-const iconColor = '#8899A6'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 16
+    paddingTop: Sizes.statusBar.paddingTop
   },
   mainArea: {
     flex: 1,
@@ -94,7 +128,9 @@ const styles = StyleSheet.create({
   },
   optionsBar: {
     height: 50,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderTopColor: Colors.twitterGrey,
+    borderTopWidth: StyleSheet.hairlineWidth
   },
   left: {
     flex: 8,
@@ -102,11 +138,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   right: {
-    // flex: 2,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 15,
     // backgroundColor: 'blue'
+  },
+  charsLeft: {
+    paddingRight: 15
   },
   icon: {
     paddingRight: 10,

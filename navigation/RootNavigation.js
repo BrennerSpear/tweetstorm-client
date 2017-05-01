@@ -12,6 +12,8 @@ import Router from './Router'
 
 // import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
+import Sizes from '../constants/Sizes'
+import Icon from '../components/Icon'
 // import registerForPushNotificationsAsync
   // from '../api/registerForPushNotificationsAsync'
 
@@ -26,13 +28,20 @@ export default class RootNavigation extends React.Component {
     newTweet: true
   }
 
-
   componentDidMount() {
     // this._notificationSubscription = this._registerForPushNotifications()
   }
 
   componentWillUnmount() {
     // this._notificationSubscription && this._notificationSubscription.remove()
+  }
+
+  _exitNewTweet() {
+    this.setState({newTweet: false})
+  }
+
+  _startNewTweet() {
+    this.setState({newTweet: true})
   }
 
   render() {
@@ -52,36 +61,27 @@ export default class RootNavigation extends React.Component {
         <TabNavigation tabBarHeight={56} initialTab="home">
           <TabNavigationItem
             id="home"
-            renderIcon={isSelected => this._renderIcon('home', isSelected)}>
-            <StackNavigation initialRoute="home" />
+            renderIcon={isSelected => Icon('home', 'medium', this._color(isSelected))}>
+            <StackNavigation initialRoute={
+            Router.getRoute('home',
+            {profileInfo: this.props.profileInfo,
+             newTweet: this._startNewTweet})} />
           </TabNavigationItem>
 
           <TabNavigationItem
             id="links"
-            renderIcon={isSelected => this._renderIcon('book', isSelected)}>
-            <StackNavigation initialRoute="links" />
+            renderIcon={isSelected => Icon('book', 'medium', this._color(isSelected))}>
+            <StackNavigation initialRoute={
+            Router.getRoute('links',
+            {profileInfo: this.props.profileInfo})} />
           </TabNavigationItem>
         </TabNavigation>
       )
     }
   }
 
-  _exitNewTweet() {
-    this.setState({newTweet: false})
-  }
-
-  _startNewTweet() {
-    this.setState({newTweet: true})
-  }
-
-  _renderIcon(name, isSelected) {
-    return (
-      <FontAwesome
-        name={name}
-        size={32}
-        color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
-      />
-    )
+  _color(isSelected) {
+    return isSelected ? 'twitterBlue' : 'twitterGrey'
   }
 
   // _registerForPushNotifications() {

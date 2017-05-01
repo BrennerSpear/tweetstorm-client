@@ -6,23 +6,16 @@ import {
   View,
 } from 'react-native'
 
+import Icon from './Icon'
+
 import { FontAwesome } from '@expo/vector-icons'
+import Colors from '../constants/Colors'
+import Sizes from '../constants/Sizes'
 
 export default class NewTweetTopBar extends React.Component {
 
   componentDidMount() {
     console.log('NewTweetTopBar componentDidMount')
-  }
-
-  _renderIcon(name, size, color) {
-    return (
-      <FontAwesome
-        name={name}
-        size={size}
-        color={color}
-        onPress={this.props.exit}
-      />
-    )
   }
 
   render() {
@@ -34,7 +27,7 @@ export default class NewTweetTopBar extends React.Component {
             <Text>@{this.props.profileInfo.username}</Text>
           </View>
           <View style={styles.xbutton}>
-          {this._renderIcon('times', iconSize, iconColor)}
+          {Icon('times', 'medium', 'twitterBlue', null, this.props.exit)}
           </View>
 
         </View>
@@ -42,14 +35,11 @@ export default class NewTweetTopBar extends React.Component {
   }
 }
 
-const iconSize = 32
-const iconColor ='#58AEF0'
-
 const styles = StyleSheet.create({
   topView: {
     flexDirection: 'row',
     // backgroundColor: 'red',
-    height: 50
+    height: Sizes.topBar.height
   },
   topViewLeft: {
     flex: 1,
@@ -58,8 +48,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
   },
   profPicImage: {
-    height: iconSize,
-    width: iconSize,
+    height: Sizes.icon.medium,
+    width: Sizes.icon.medium,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
