@@ -46,10 +46,12 @@ export default class LoginScreen extends React.Component {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     }).then(res => res.json())
-    const accessTokenResponse = accessTokenResult.accessTokenResponse
-    // console.log('accessTokenResponse:', accessTokenResponse)
-    const username = accessTokenResponse.screen_name
 
+    // const accessTokenResponse = accessTokenResult.accessTokenResponse
+    // console.log('accessTokenResponse:', accessTokenResponse)
+    // const username = accessTokenResponse.screen_name
+
+    const username = accessTokenResult.handle
     this.props.login({ username: username })
     Expo.WebBrowser.dismissBrowser()
   }
@@ -65,7 +67,9 @@ export default class LoginScreen extends React.Component {
     const redirectURLResult = await fetch(redirectURLEndpoint, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
+    console.log('redirectURLResult',redirectURLResult)
     authToken = redirectURLResult.token
     secretToken = redirectURLResult.secretToken
     await Expo.WebBrowser.openBrowserAsync(redirectURLResult.redirectURL)
@@ -75,7 +79,7 @@ export default class LoginScreen extends React.Component {
     return (
       <View
         style={styles.container}>
-        <Text style={styles.title}>Example: Twitter login</Text>
+        <Text style={styles.title}>Tweetstorm</Text>
         <Button title="Login to Twitter" onPress={this.loginWithTwitter} />
       </View>
     )
