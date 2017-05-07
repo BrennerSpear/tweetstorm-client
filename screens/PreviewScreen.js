@@ -7,6 +7,10 @@ import {
   Button
 } from 'react-native'
 
+import axios from 'axios'
+
+import {tweetEndpoint} from '../envConfig'
+
 import Router from '../navigation/Router'
 
 import Icon from '../components/Icon'
@@ -20,6 +24,7 @@ export default class PreviewScreen extends React.Component {
   constructor(props) {
     super(props)
     // this.state = {}
+    this.tweet = this.tweet.bind(this)
   }
 
   static route = {
@@ -37,7 +42,15 @@ export default class PreviewScreen extends React.Component {
   }
 
   tweet() {
-    console.log('tweeted!')
+    axios.post('https://2c73825a.ngrok.io/post_tweet', {
+      tweets: this.props.tweets,
+      token: this.props.profileInfo.token,
+      token_secret: this.props.profileInfo.token_secret
+    })
+    .then(response => {
+      console.log('tweets sent to server')
+      console.log(response)
+    })
   }
 
   renderTweets = () => {

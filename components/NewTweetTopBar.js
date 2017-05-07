@@ -24,7 +24,7 @@ export default class NewTweetTopBar extends React.Component {
         <View style={styles.topView}>
           <View style={styles.topViewLeft}>
             <Image style={styles.profPicImage} source={require('../assets/icons/notification-icon.png')}/>
-            <Text>@{this.props.profileInfo.username}</Text>
+            <Text>@{this.props.profileInfo.handle}</Text>
           </View>
           <View style={styles.xbutton}>
           {Icon('times', 'medium', 'twitterBlue', null, this.props.exit)}
