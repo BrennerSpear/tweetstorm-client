@@ -21,7 +21,7 @@ class AppContainer extends React.Component {
     appIsReady: false,
     loggedIn: false,
     newTweet: true,
-    username: 'USERNAME',
+    handle: 'USERNAME',
   }
 
 
@@ -52,17 +52,16 @@ class AppContainer extends React.Component {
   }
 
   _logIn(params) {
+    params.loggedIn = true
+    console.log('params', params)
     console.log('_login function')
-    this.setState({
-      loggedIn: true,
-      username: params.username
-    })
+    this.setState(params)
   }
 
   _profileInfo() {
     console.log('_profileInfo function')
     return {
-      username: this.state.username
+      handle: this.state.handle
     }
   }
   render() {

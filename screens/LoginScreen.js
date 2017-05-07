@@ -51,8 +51,8 @@ export default class LoginScreen extends React.Component {
     // console.log('accessTokenResponse:', accessTokenResponse)
     // const username = accessTokenResponse.screen_name
 
-    const username = accessTokenResult.handle
-    this.props.login({ username: username })
+    // const username = accessTokenResult.handle
+    this.props.login(accessTokenResult)
     Expo.WebBrowser.dismissBrowser()
   }
 
