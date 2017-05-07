@@ -42,14 +42,10 @@ export default class PreviewScreen extends React.Component {
   }
 
   tweet() {
-    // e.preventDefault()
-    var _this = this
-    console.log(_this.props.tweets)
-
     axios.post('https://2c73825a.ngrok.io/post_tweet', {
-      tweets: _this.props.tweets,
-      token: _this.props.profileInfo.token,
-      token_secret: _this.props.profileInfo.token_secret
+      tweets: this.props.tweets,
+      token: this.props.profileInfo.token,
+      token_secret: this.props.profileInfo.token_secret
     })
     .then(response => {
       console.log('tweets sent to server')
