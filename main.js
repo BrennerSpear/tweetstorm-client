@@ -61,7 +61,9 @@ class AppContainer extends React.Component {
   _profileInfo() {
     console.log('_profileInfo function')
     return {
-      handle: this.state.handle
+      handle: this.state.handle,
+      token: this.state.token,
+      token_secret: this.state.token_secret
     }
   }
   render() {

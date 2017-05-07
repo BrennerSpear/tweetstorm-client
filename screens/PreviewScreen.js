@@ -7,7 +7,7 @@ import {
   Button
 } from 'react-native'
 
-// import axios from 'axios'
+import axios from 'axios'
 
 import {tweetEndpoint} from '../envConfig'
 
@@ -41,20 +41,20 @@ export default class PreviewScreen extends React.Component {
     this.props.navigator.pop()
   }
 
-  tweet(e) {
+  tweet() {
     // e.preventDefault()
-    // var _this = this
-    // console.log(_this.props.tweets)
+    var _this = this
+    console.log(_this.props.tweets)
 
-    // const response = await fetch(tweetEndpoint,)
-
-    // axios.post('/post_tweet', {
-    //   tweets: _this.props.tweets
-    // })
-    // .then(response => {
-    //   console.log('tweets sent to server')
-    //   console.log(response)
-    // })
+    axios.post('https://2c73825a.ngrok.io/post_tweet', {
+      tweets: _this.props.tweets,
+      token: _this.props.profileInfo.token,
+      token_secret: _this.props.profileInfo.token_secret
+    })
+    .then(response => {
+      console.log('tweets sent to server')
+      console.log(response)
+    })
   }
 
   renderTweets = () => {
