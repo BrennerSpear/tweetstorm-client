@@ -7,10 +7,6 @@ import {redirectURLEndpoint, accessTokenEndpoint} from '../envConfig'
 let authToken
 let secretToken
 
-var print = function(param) {
-  return Object.entries(param)
-}
-
 export default class LoginScreen extends React.Component {
   static route = {
     navigationBar: {

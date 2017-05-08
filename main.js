@@ -19,9 +19,9 @@ class AppContainer extends React.Component {
 
   state = {
     appIsReady: false,
-    loggedIn: false,
+    loggedIn: true,
     newTweet: true,
-    handle: 'USERNAME',
+    handle: 'tweetstormerapp',
   }
 
 
