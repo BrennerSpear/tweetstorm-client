@@ -22,8 +22,6 @@ class AppContainer extends React.Component {
     loggedIn: true,
     newTweet: true,
     handle: 'tweetstormerapp',
-    token: "846847477353373696-wheiF5QR4Q6O6dV9KfFXUEXBNm64v4s",
-    token_secret: "eyIxLCr09wJcbdekrbLbQHwM6agrL1wsEnyBu0UFzBIsn"
   }
 
 
