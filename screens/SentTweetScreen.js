@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+import Router from '../navigation/Router'
 
 export default class SentTweetScreen extends React.Component {
   // static route = {
@@ -9,9 +10,15 @@ export default class SentTweetScreen extends React.Component {
   //   },
   // }
 
+  
+
   componentDidMount() {
     setTimeout(() => {
-      this.props.exit()
+      this.props.showTabBar()
+      this.props.navigator.immediatelyResetStack([Router.getRoute('home',
+        {profileInfo: this.props.profileInfo,
+         hideTabBar: this.props.hideTabBar,
+         showTabBar: this.props.showTabBar})], 0)
     }, 1200)
   }
 

@@ -49,7 +49,10 @@ export default class PreviewScreen extends React.Component {
     })
     .then(response => {
       console.log('tweets sent to server')
-      this.props.navigator.push(Router.getRoute('sentTweet', {exit: this.props.exit}))
+      this.props.navigator.push(Router.getRoute('sentTweet', {
+        profileInfo: this.props.profileInfo,
+        showTabBar: this.props.showTabBar,
+        hideTabBar: this.props.hideTabBar}))
     })
   }
 

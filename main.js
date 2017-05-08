@@ -1,10 +1,11 @@
 import Expo from 'expo'
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
-import { NavigationProvider, StackNavigation } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
 import LoginScreen from './screens/LoginScreen'
+
+import RootNavigation from './navigation/RootNavigation'
 
 import Router from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
@@ -14,7 +15,7 @@ class AppContainer extends React.Component {
 
   constructor() {
     super()
-    this._logIn = this._logIn.bind(this)
+    this.logIn = this.logIn.bind(this)
   }
 
   state = {
@@ -22,6 +23,8 @@ class AppContainer extends React.Component {
     loggedIn: true,
     newTweet: true,
     handle: 'tweetstormerapp',
+    token: "846847477353373696-wheiF5QR4Q6O6dV9KfFXUEXBNm64v4s",
+    token_secret: "eyIxLCr09wJcbdekrbLbQHwM6agrL1wsEnyBu0UFzBIsn"
   }
 
 
@@ -51,15 +54,15 @@ class AppContainer extends React.Component {
     }
   }
 
-  _logIn(params) {
+  logIn(params) {
     params.loggedIn = true
     console.log('params', params)
     console.log('_login function')
     this.setState(params)
   }
 
-  _profileInfo() {
-    console.log('_profileInfo function')
+  profileInfo() {
+    console.log('profileInfo function')
     return {
       handle: this.state.handle,
       token: this.state.token,
@@ -69,22 +72,9 @@ class AppContainer extends React.Component {
   render() {
     console.log('rendering main')
     if (this.state.appIsReady && this.state.loggedIn) {
-      return (
-        <View style={styles.container}>
-          <NavigationProvider router={Router}>
-            <StackNavigation
-              id="root"
-              initialRoute={Router.getRoute('rootNavigation', {profileInfo:this._profileInfo()})}
-            />
-          </NavigationProvider>
-
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' &&
-            <View style={styles.statusBarUnderlay} />}
-        </View>
-      )
+      return <RootNavigation profileInfo = {this.profileInfo()}/>
     } else if(this.state.appIsReady){
-      return <LoginScreen login={this._logIn}/>
+      return <LoginScreen login={this.logIn}/>
     } else {
       return <Expo.AppLoading />
     }

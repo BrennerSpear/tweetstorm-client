@@ -33,7 +33,11 @@ export default class HomeScreen extends React.Component {
     console.log('rendering HomeScreen')
     return (
       <View style={styles.container}>
-        <HomePageTopBar  profileInfo={this.props.profileInfo} newTweet={this.props.newTweet}/>
+        <HomePageTopBar
+          profileInfo={this.props.profileInfo}
+          hideTabBar={this.props.hideTabBar}
+          showTabBar={this.props.showTabBar}
+          navigator={this.props.navigator}/>
       </View>
     )
   }
