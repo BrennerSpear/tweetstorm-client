@@ -67,7 +67,8 @@ export default class NewTweetScreen extends React.Component {
     if(!this.state.blank) {
       this.props.navigator.push(Router.getRoute('preview', {
         tweets: this.state.tweets,
-        profileInfo: this.props.profileInfo}))
+        profileInfo: this.props.profileInfo,
+        exit: this.props.exit}))
     }
   }
 

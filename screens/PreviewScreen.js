@@ -49,13 +49,15 @@ export default class PreviewScreen extends React.Component {
     })
     .then(response => {
       console.log('tweets sent to server')
-      console.log(response)
+      this.props.navigator.push(Router.getRoute('sentTweet', {exit: this.props.exit}))
     })
   }
 
   renderTweets = () => {
     var tweetsInViews = []
     var tweets = this.props.tweets
+    console.log('above tweets')
+    console.log('tweets', tweets)
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(

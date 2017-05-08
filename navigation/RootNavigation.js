@@ -20,8 +20,8 @@ import Icon from '../components/Icon'
 export default class RootNavigation extends React.Component {
   constructor() {
     super()
-    this._exitNewTweet = this._exitNewTweet.bind(this)
-    this._startNewTweet = this._startNewTweet.bind(this)
+    this.exitNewTweet = this.exitNewTweet.bind(this)
+    this.startNewTweet = this.startNewTweet.bind(this)
   }
 
   state = {
@@ -36,11 +36,11 @@ export default class RootNavigation extends React.Component {
     // this._notificationSubscription && this._notificationSubscription.remove()
   }
 
-  _exitNewTweet() {
+  exitNewTweet() {
     this.setState({newTweet: false})
   }
 
-  _startNewTweet() {
+  startNewTweet() {
     this.setState({newTweet: true})
   }
 
@@ -52,7 +52,7 @@ export default class RootNavigation extends React.Component {
           initialRoute={
             Router.getRoute('newTweet',
             {profileInfo: this.props.profileInfo,
-             exit: this._exitNewTweet})}
+             exit: this.exitNewTweet})}
         />
       )
     }
@@ -65,7 +65,7 @@ export default class RootNavigation extends React.Component {
             <StackNavigation initialRoute={
             Router.getRoute('home',
             {profileInfo: this.props.profileInfo,
-             newTweet: this._startNewTweet})} />
+             newTweet: this.startNewTweet})} />
           </TabNavigationItem>
 
           <TabNavigationItem
