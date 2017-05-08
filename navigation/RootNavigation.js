@@ -21,8 +21,7 @@ import Icon from '../components/Icon'
 export default class RootNavigation extends React.Component {
   constructor() {
     super()
-    this.hideTabBar = this.hideTabBar.bind(this)
-    this.showTabBar = this.showTabBar.bind(this)
+    this.updateRootState = this.updateRootState.bind(this)
   }
 
   state = {
@@ -41,45 +40,35 @@ export default class RootNavigation extends React.Component {
     return (this.state.showTabBar) ? 45 : 0.1
   }
 
-  hideTabBar() {
-    console.log('hideTabBar')
-    this.setState({showTabBar: false})
-  }
-
-  showTabBar() {
-    this.setState({showTabBar: true})
-  }
-
-  renderHome() {
-    return (
-      <TabNavigation tabBarHeight={this.getTabBarHeight()} initialTab="home">
-        <TabNavigationItem
-          id="home"
-          renderIcon={isSelected => Icon('home', 'medium', this.color(isSelected))}>
-          <StackNavigation initialRoute={
-          Router.getRoute('home',
-          {profileInfo: this.props.profileInfo,
-           hideTabBar: this.hideTabBar,
-           showTabBar: this.showTabBar})} />
-        </TabNavigationItem>
-
-        <TabNavigationItem
-          id="links"
-          renderIcon={isSelected => Icon('book', 'medium', this.color(isSelected))}>
-          <StackNavigation initialRoute={
-          Router.getRoute('links',
-          {profileInfo: this.props.profileInfo})} />
-        </TabNavigationItem>
-      </TabNavigation>
-    )
+  updateRootState(params) {
+    console.log('updating Root state', params)
+    this.setState(params)
   }
 
   render() {
-    console.log('rednering RootNavigation')
+    console.log('rendering RootNavigation')
     return (
       <View style={styles.container}>
         <NavigationProvider router={Router}>
-          {this.renderHome()}
+          <TabNavigation tabBarHeight={this.getTabBarHeight()} initialTab="home">
+            <TabNavigationItem
+              id="home"
+              renderIcon={isSelected => Icon('home', 'medium', this.color(isSelected))}>
+              <StackNavigation initialRoute={
+              Router.getRoute('home',
+              {profileInfo: this.props.profileInfo,
+               updateRootState: this.updateRootState,
+               firstOpen: true})} />
+            </TabNavigationItem>
+
+            <TabNavigationItem
+              id="links"
+              renderIcon={isSelected => Icon('book', 'medium', this.color(isSelected))}>
+              <StackNavigation initialRoute={
+              Router.getRoute('links',
+              {profileInfo: this.props.profileInfo})} />
+            </TabNavigationItem>
+          </TabNavigation>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
         </NavigationProvider>

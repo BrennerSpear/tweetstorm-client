@@ -23,7 +23,7 @@ export default class NewTweetTopBar extends React.Component {
   }
 
   goBack() {
-    this.props.showTabBar()
+    this.props.updateRootState({showTabBar: true})
     this.props.navigator.pop()
   }
 

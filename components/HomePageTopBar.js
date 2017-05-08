@@ -23,12 +23,10 @@ export default class HomePageTopBar extends React.Component {
   }
 
   newTweet() {
-    console.log('this should hide it!')
-    this.props.hideTabBar()
+    this.props.updateRootState({showTabBar: false})
     this.props.navigator.push(Router.getRoute('newTweet',
       {profileInfo: this.props.profileInfo,
-       showTabBar: this.props.showTabBar,
-       hideTabBar: this.props.hideTabBar}
+       updateRootState: this.props.updateRootState}
     ))
   }
 

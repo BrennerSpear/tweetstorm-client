@@ -14,11 +14,11 @@ export default class SentTweetScreen extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.props.showTabBar()
+      this.props.updateRootState({showTabBar: true})
       this.props.navigator.immediatelyResetStack([Router.getRoute('home',
         {profileInfo: this.props.profileInfo,
-         hideTabBar: this.props.hideTabBar,
-         showTabBar: this.props.showTabBar})], 0)
+         updateRootState: this.props.updateRootState,
+         firstOpen: false})], 0)
     }, 1200)
   }
 

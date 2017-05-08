@@ -14,6 +14,8 @@ import HomePageTopBar from '../components/HomePageTopBar'
 import Sizes from '../constants/Sizes'
 import { MonoText } from '../components/StyledText'
 
+import Router from '../navigation/Router'
+
 export default class HomeScreen extends React.Component {
     constructor(props) {
     super(props)
@@ -27,6 +29,13 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     console.log('HomeScreen componentDidMount')
+    if(this.props.firstOpen) {
+      this.props.updateRootState({showTabBar: false})
+      this.props.navigator.push(Router.getRoute('newTweet',
+        {profileInfo: this.props.profileInfo,
+         updateRootState: this.props.updateRootState}
+      ))
+    }
   }
 
   render() {
@@ -35,8 +44,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <HomePageTopBar
           profileInfo={this.props.profileInfo}
-          hideTabBar={this.props.hideTabBar}
-          showTabBar={this.props.showTabBar}
+          updateRootState={this.props.updateRootState}
           navigator={this.props.navigator}/>
       </View>
     )

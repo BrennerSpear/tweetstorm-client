@@ -73,8 +73,7 @@ export default class NewTweetScreen extends React.Component {
       this.props.navigator.push(Router.getRoute('preview', {
         tweets: this.state.tweets,
         profileInfo: this.props.profileInfo,
-        showTabBar: this.props.showTabBar,
-        hideTabBar: this.props.hideTabBar}))
+        updateRootState: this.props.updateRootState}))
     }
   }
 
@@ -85,7 +84,7 @@ export default class NewTweetScreen extends React.Component {
 
         <NewTweetTopBar
           profileInfo={this.props.profileInfo}
-          showTabBar={this.props.showTabBar}
+          updateRootState={this.props.updateRootState}
           navigator={this.props.navigator} />
 
         
