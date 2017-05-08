@@ -9,6 +9,8 @@ import {
 } from 'react-native'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
+import { NavigationStyles } from '@expo/ex-navigation'
+
 import Router from '../navigation/Router'
 
 import NewTweetTopBar from '../components/NewTweetTopBar'
@@ -36,6 +38,9 @@ export default class NewTweetScreen extends React.Component {
   static route = {
     navigationBar: {
       visible: false,
+    },
+    styles: {
+      ...NavigationStyles.SlideVertical,
     },
   }
 
@@ -68,7 +73,7 @@ export default class NewTweetScreen extends React.Component {
       this.props.navigator.push(Router.getRoute('preview', {
         tweets: this.state.tweets,
         profileInfo: this.props.profileInfo,
-        exit: this.props.exit}))
+        updateRootState: this.props.updateRootState}))
     }
   }
 
@@ -77,7 +82,10 @@ export default class NewTweetScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        <NewTweetTopBar profileInfo={this.props.profileInfo} exit={this.props.exit} />
+        <NewTweetTopBar
+          profileInfo={this.props.profileInfo}
+          updateRootState={this.props.updateRootState}
+          navigator={this.props.navigator} />
 
         
         <ScrollView style={styles.mainArea} contentContainerStyle={{flex: 1}}>

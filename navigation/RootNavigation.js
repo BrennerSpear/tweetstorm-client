@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Platform, StatusBar } from 'react-native'
 import { Notifications } from 'expo'
 import {
+  NavigationProvider,
   StackNavigation,
   TabNavigation,
   TabNavigationItem,
@@ -20,12 +21,11 @@ import Icon from '../components/Icon'
 export default class RootNavigation extends React.Component {
   constructor() {
     super()
-    this.exitNewTweet = this.exitNewTweet.bind(this)
-    this.startNewTweet = this.startNewTweet.bind(this)
+    this.updateRootState = this.updateRootState.bind(this)
   }
 
   state = {
-    newTweet: true
+    showTabBar: true
   }
 
   componentDidMount() {
@@ -36,51 +36,47 @@ export default class RootNavigation extends React.Component {
     // this._notificationSubscription && this._notificationSubscription.remove()
   }
 
-  exitNewTweet() {
-    this.setState({newTweet: false})
+  getTabBarHeight() {
+    return (this.state.showTabBar) ? 45 : 0.1
   }
 
-  startNewTweet() {
-    this.setState({newTweet: true})
+  updateRootState(params) {
+    console.log('updating Root state', params)
+    this.setState(params)
   }
 
   render() {
-    if(this.state.newTweet) {
-      return (
-        <StackNavigation
-          id='newTweet'
-          initialRoute={
-            Router.getRoute('newTweet',
-            {profileInfo: this.props.profileInfo,
-             exit: this.exitNewTweet})}
-        />
-      )
-    }
-    else {
-      return (
-        <TabNavigation tabBarHeight={56} initialTab="home">
-          <TabNavigationItem
-            id="home"
-            renderIcon={isSelected => Icon('home', 'medium', this._color(isSelected))}>
-            <StackNavigation initialRoute={
-            Router.getRoute('home',
-            {profileInfo: this.props.profileInfo,
-             newTweet: this.startNewTweet})} />
-          </TabNavigationItem>
+    console.log('rendering RootNavigation')
+    return (
+      <View style={styles.container}>
+        <NavigationProvider router={Router}>
+          <TabNavigation tabBarHeight={this.getTabBarHeight()} initialTab="home">
+            <TabNavigationItem
+              id="home"
+              renderIcon={isSelected => Icon('home', 'medium', this.color(isSelected))}>
+              <StackNavigation initialRoute={
+              Router.getRoute('home',
+              {profileInfo: this.props.profileInfo,
+               updateRootState: this.updateRootState,
+               firstOpen: true})} />
+            </TabNavigationItem>
 
-          <TabNavigationItem
-            id="links"
-            renderIcon={isSelected => Icon('book', 'medium', this._color(isSelected))}>
-            <StackNavigation initialRoute={
-            Router.getRoute('links',
-            {profileInfo: this.props.profileInfo})} />
-          </TabNavigationItem>
-        </TabNavigation>
-      )
-    }
+            <TabNavigationItem
+              id="links"
+              renderIcon={isSelected => Icon('book', 'medium', this.color(isSelected))}>
+              <StackNavigation initialRoute={
+              Router.getRoute('links',
+              {profileInfo: this.props.profileInfo})} />
+            </TabNavigationItem>
+          </TabNavigation>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+        </NavigationProvider>
+      </View>
+    )
   }
 
-  _color(isSelected) {
+  color(isSelected) {
     return isSelected ? 'twitterBlue' : 'twitterGrey'
   }
 
@@ -109,6 +105,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  statusBarUnderlay: {
+    height: 24,
+    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   selectedTab: {
     color: Colors.tabIconSelected,

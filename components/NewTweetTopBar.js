@@ -13,9 +13,18 @@ import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
 export default class NewTweetTopBar extends React.Component {
+  constructor() {
+    super()
+    this.goBack = this.goBack.bind(this)
+  }
 
   componentDidMount() {
     console.log('NewTweetTopBar componentDidMount')
+  }
+
+  goBack() {
+    this.props.updateRootState({showTabBar: true})
+    this.props.navigator.pop()
   }
 
   render() {
@@ -27,7 +36,7 @@ export default class NewTweetTopBar extends React.Component {
             <Text>@{this.props.profileInfo.handle}</Text>
           </View>
           <View style={styles.xbutton}>
-          {Icon('times', 'medium', 'twitterBlue', null, this.props.exit)}
+          {Icon('times', 'medium', 'twitterBlue', null, this.goBack)}
           </View>
 
         </View>
