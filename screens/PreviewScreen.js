@@ -42,7 +42,7 @@ export default class PreviewScreen extends React.Component {
   }
 
   tweet() {
-    axios.post('https://2c73825a.ngrok.io/post_tweet', {
+    axios.post(tweetEndpoint, {
       tweets: this.props.tweets,
       token: this.props.profileInfo.token,
       token_secret: this.props.profileInfo.token_secret

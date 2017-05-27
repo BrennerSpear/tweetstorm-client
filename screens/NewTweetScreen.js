@@ -27,6 +27,7 @@ export default class NewTweetScreen extends React.Component {
       text: '',
       tweets: null,
       prefixOption: 'slash',
+      postfixOption: true,
       charsLeft: 137,
       blank: true
     }
@@ -50,7 +51,7 @@ export default class NewTweetScreen extends React.Component {
 
   handleChange(e) {
     const text = e.text
-    const tweets = SplitTweets.splitTweets(text, this.state.prefixOption)
+    const tweets = SplitTweets.splitTweets(text, this.state.prefixOption, this.state.postfixOption)
     const charsLeft = this.calculateCharsLeft(tweets)
     const blank = (text === '')
     this.setState({
