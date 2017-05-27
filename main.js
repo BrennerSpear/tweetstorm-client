@@ -1,6 +1,6 @@
 import Expo from 'expo'
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Platform, StatusBar, StyleSheet, View, AsyncStorage} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 import LoginScreen from './screens/LoginScreen'
@@ -20,15 +20,29 @@ class AppContainer extends React.Component {
 
   state = {
     appIsReady: false,
-    loggedIn: true,
-    handle: 'tweetstormerapp',
-    token: "846847477353373696-wheiF5QR4Q6O6dV9KfFXUEXBNm64v4s",
-    token_secret: "eyIxLCr09wJcbdekrbLbQHwM6agrL1wsEnyBu0UFzBIsn"
+    loggedIn: false
   }
-
 
   componentWillMount() {
     this._loadAssetsAsync()
+    this.loadUserAysnc()
+  }
+
+  async loadUserAysnc() {
+    try {
+      var twitterData = await AsyncStorage.getItem('twitterData')
+      twitterData = JSON.parse(twitterData)
+      if(twitterData) {
+        this.setState(twitterData)
+      }
+    }
+    catch(e) {
+      console.log(e.message)
+    }
+    finally {
+      console.log('user loaded')
+    }
+
   }
 
   async _loadAssetsAsync() {
@@ -53,15 +67,24 @@ class AppContainer extends React.Component {
     }
   }
 
-  logIn(params) {
+  async logIn(params) {
     params.loggedIn = true
     console.log('params', params)
     console.log('_login function')
     this.setState(params)
+    try {
+      var twitterData = JSON.stringify(params)
+      await AsyncStorage.setItem('twitterData', twitterData)
+    }
+    catch (e) {
+      console.log(e.message)
+    }
+    finally {
+      console.log('login stored to disk')
+    }
   }
 
   profileInfo() {
-    console.log('profileInfo function')
     return {
       handle: this.state.handle,
       token: this.state.token,
