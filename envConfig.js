@@ -1,5 +1,6 @@
 module.exports= {
-  redirectURLEndpoint: 'https://7d9a52f8.ngrok.io/redirect_url',
-  accessTokenEndpoint: 'https://7d9a52f8.ngrok.io/access_token',
-  tweetEndpoint: 'https://7d9a52f8.ngrok.io/post_tweet',
+  redirectURLEndpoint: 'https://brenner-tweetstorm.herokuapp.com/redirect_url',
+  accessTokenEndpoint: 'https://brenner-tweetstorm.herokuapp.com/access_token',
+  tweetEndpoint: 'https://brenner-tweetstorm.herokuapp.com/post_tweet',
 }
+

@@ -60,7 +60,7 @@ export default class LoginScreen extends React.Component {
 
   loginWithTwitter = async () => {
     // Call your backend to get the redirect URL, Expo will take care of redirecting the user.
-    const redirectURLResult = await fetch(redirectURLEndpoint, {
+    const redirectURLResult = await fetch((redirectURLEndpoint+'?secret=kepler452b'), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     })
