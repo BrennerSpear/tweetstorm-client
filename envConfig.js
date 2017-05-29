@@ -1,11 +1,16 @@
-module.exports= {
-  redirectURLEndpoint: 'https://brenner-tweetstorm.herokuapp.com/redirect_url',
-  accessTokenEndpoint: 'https://brenner-tweetstorm.herokuapp.com/access_token',
-  tweetEndpoint: 'https://brenner-tweetstorm.herokuapp.com/post_tweet',
+const prodServer = 'https://brenner-tweetstorm.herokuapp.com/'
+const devServer  = 'https://7d9a52f8.ngrok.io/'
+
+const production = {
+  redirectURLEndpoint: `${prodServer}redirect_url`,
+  accessTokenEndpoint: `${prodServer}access_token`,
+  tweetEndpoint: `${prodServer}post_tweet`,
 }
 
-// module.exports= {
-//   redirectURLEndpoint: 'https://7d9a52f8.ngrok.io/redirect_url',
-//   accessTokenEndpoint: 'https://7d9a52f8.ngrok.io/access_token',
-//   tweetEndpoint: 'https://7d9a52f8.ngrok.io/post_tweet',
-// }
+const local = {
+  redirectURLEndpoint: `${devServer}redirect_url`,
+  accessTokenEndpoint: `${devServer}access_token`,
+  tweetEndpoint: `${devServer}post_tweet`,
+}
+
+module.exports = __DEV__ ? local : production

@@ -57,18 +57,23 @@ export default class LoginScreen extends React.Component {
   }
 
   loginWithTwitter = async () => {
-    const queryString = this.toQueryString({secret: 'kepler452b', linkingUri: Expo.Constants.linkingUri})
-    // const queryString = this.toQueryString({secret: 'kepler452b'})
-    const redirectURLResult = await fetch((redirectURLEndpoint+queryString), {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    })
-    .then(res =>res.json())
-
-    console.log('redirectURLResult',redirectURLResult)
-    authToken = redirectURLResult.token
-    secretToken = redirectURLResult.secretToken
-    await Expo.WebBrowser.openBrowserAsync(redirectURLResult.redirectURL)
+    try {
+      const queryString = this.toQueryString({secret: 'kepler452b', linkingUri: Expo.Constants.linkingUri})
+      const redirectURLResult = await fetch((redirectURLEndpoint+queryString), {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      })
+      .then(res =>res.json())
+      console.log('redirectURLResult',redirectURLResult)
+      authToken = redirectURLResult.token
+      secretToken = redirectURLResult.secretToken
+      await Expo.WebBrowser.openBrowserAsync(redirectURLResult.redirectURL)
+    }
+    catch(e) {
+      //@TODO error message about server being down
+      alert('Somethings not working')
+      console.log('Error:', e)
+    }
   }
 
   render() {
