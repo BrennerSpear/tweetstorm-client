@@ -107,7 +107,8 @@ class AppContainer extends React.Component {
     return {
       handle: this.state.handle,
       token: this.state.token,
-      token_secret: this.state.token_secret
+      token_secret: this.state.token_secret,
+      twitter_id: this.state.twitter_id
     }
   }
   render() {

@@ -1,16 +1,22 @@
 const prodServer = 'https://brenner-tweetstorm.herokuapp.com/'
 const devServer  = 'https://7d9a52f8.ngrok.io/'
 
-const production = {
-  redirectURLEndpoint: `${prodServer}redirect_url`,
-  accessTokenEndpoint: `${prodServer}access_token`,
-  tweetEndpoint: `${prodServer}post_tweet`,
+const pairs = {
+  serverEndpoint: '',
+  redirectURLEndpoint: 'redirect_url',
+  accessTokenEndpoint: 'access_token',
+  tweetEndpoint: 'post_tweet',
 }
 
-const local = {
-  redirectURLEndpoint: `${devServer}redirect_url`,
-  accessTokenEndpoint: `${devServer}access_token`,
-  tweetEndpoint: `${devServer}post_tweet`,
+const generateEndpoints = function(server, pairs) {
+  var endpoints = {}
+  for(key in pairs) {
+    endpoints[key] = (server + pairs[key])
+  }
+  return endpoints
 }
 
-module.exports = __DEV__ ? local : production
+const prod = generateEndpoints(prodServer, pairs)
+const dev = generateEndpoints(devServer, pairs)
+
+module.exports = __DEV__ ? dev : prod
