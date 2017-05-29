@@ -1,5 +1,7 @@
 import Expo from 'expo'
 import React from 'react'
+import Sentry from 'sentry-expo';
+Sentry.config('https://51c4658a4b8c4b8489574be3462b6c80@sentry.io/173167').install();
 import { Platform, StatusBar, StyleSheet, View, AsyncStorage} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -16,6 +18,7 @@ class AppContainer extends React.Component {
   constructor() {
     super()
     this.logIn = this.logIn.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   state = {
@@ -68,19 +71,35 @@ class AppContainer extends React.Component {
   }
 
   async logIn(params) {
-    params.loggedIn = true
-    console.log('params', params)
-    console.log('_login function')
-    this.setState(params)
-    try {
-      var twitterData = JSON.stringify(params)
-      await AsyncStorage.setItem('twitterData', twitterData)
+    if(!params.error) {
+      try {
+        params.loggedIn = true
+        console.log('_login function')
+        this.setState(params)
+        var twitterData = JSON.stringify(params)
+        await AsyncStorage.setItem('twitterData', twitterData)
+      }
+      catch (e) {
+        console.log('Error:', e.message)
+      }
     }
-    catch (e) {
+  }
+
+  async logOut() {
+    try {
+      var newState = {}
+      var state = this.state
+      for(var key in state) {newState[key] = null}
+      newState.appIsReady = true
+      newState.loggedIn = false
+      this.setState(newState)
+      await AsyncStorage.setItem('twitterData', JSON.stringify(null))
+    }
+    catch(e) {
       console.log(e.message)
     }
     finally {
-      console.log('login stored to disk')
+      console.log('logged out')
     }
   }
 
@@ -94,7 +113,7 @@ class AppContainer extends React.Component {
   render() {
     console.log('rendering main')
     if (this.state.appIsReady && this.state.loggedIn) {
-      return <RootNavigation profileInfo = {this.profileInfo()}/>
+      return <RootNavigation profileInfo={this.profileInfo()} logOut={this.logOut}/>
     } else if(this.state.appIsReady){
       return <LoginScreen login={this.logIn}/>
     } else {

@@ -3,6 +3,7 @@
   "description": "No description",
   "slug": "tweetstorm-client",
   "privacy": "unlisted",
+  "scheme": "stormapp",
   "sdkVersion": "16.0.0",
   "version": "1.0.0",
   "orientation": "portrait",
@@ -21,5 +22,18 @@
   },
   "ios": {
     "supportsTablet": true
+  },
+  "hooks": {
+    "postPublish": [
+      {
+        "file": "sentry-expo/upload-sourcemaps",
+        "config": {
+          "organization": "brenner-spear",
+          "project": "tweetstorm-client",
+          "authToken": "3becbf75cfbd4160aaa1a4884dcbaa29cd6bbe18cb42409885c850974b569874"
+        }
+      }
+    ]
   }
+
 }

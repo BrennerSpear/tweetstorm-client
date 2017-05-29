@@ -18,12 +18,15 @@ export default class LoginScreen extends React.Component {
     Linking.addEventListener('url', this.handleTwitterRedirect)
   }
 
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleTwitterRedirect)
+  }
+
   handleTwitterRedirect = async (event) => {
-    // console.log('event test:', event)
+    console.log('event test:', event.url)
     if (!event.url.includes('+/redirect')) {
       return
     }
-
     // Parse the response query string into an object.
     const [, queryString] = event.url.split('?')
     const responseObj = queryString.split('&').reduce((map, pair) => {
@@ -43,11 +46,6 @@ export default class LoginScreen extends React.Component {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     }).then(res => res.json())
 
-    // const accessTokenResponse = accessTokenResult.accessTokenResponse
-    // console.log('accessTokenResponse:', accessTokenResponse)
-    // const username = accessTokenResponse.screen_name
-
-    // const username = accessTokenResult.handle
     this.props.login(accessTokenResult)
     Expo.WebBrowser.dismissBrowser()
   }
@@ -59,12 +57,14 @@ export default class LoginScreen extends React.Component {
   }
 
   loginWithTwitter = async () => {
-    // Call your backend to get the redirect URL, Expo will take care of redirecting the user.
-    const redirectURLResult = await fetch((redirectURLEndpoint+'?secret=kepler452b'), {
+    const queryString = this.toQueryString({secret: 'kepler452b', linkingUri: Expo.Constants.linkingUri})
+    // const queryString = this.toQueryString({secret: 'kepler452b'})
+    const redirectURLResult = await fetch((redirectURLEndpoint+queryString), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     })
-    .then(res => res.json())
+    .then(res =>res.json())
+
     console.log('redirectURLResult',redirectURLResult)
     authToken = redirectURLResult.token
     secretToken = redirectURLResult.secretToken

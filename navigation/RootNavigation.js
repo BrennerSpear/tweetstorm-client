@@ -66,7 +66,8 @@ export default class RootNavigation extends React.Component {
               renderIcon={isSelected => Icon('book', 'medium', this.color(isSelected))}>
               <StackNavigation initialRoute={
               Router.getRoute('links',
-              {profileInfo: this.props.profileInfo})} />
+              {profileInfo: this.props.profileInfo,
+               logOut: this.props.logOut})} />
             </TabNavigationItem>
           </TabNavigation>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

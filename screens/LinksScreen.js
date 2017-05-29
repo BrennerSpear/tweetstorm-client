@@ -1,6 +1,8 @@
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, Button } from 'react-native'
 import { ExpoLinksView } from '@expo/samples'
+
+import Colors from '../constants/Colors'
 
 export default class LinksScreen extends React.Component {
   static route = {
@@ -15,9 +17,8 @@ export default class LinksScreen extends React.Component {
         style={styles.container}
         contentContainerStyle={this.props.route.getContentContainerStyle()}>
 
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
+        <Button onPress={this.props.logOut} title="Log Out" color={Colors.twitterBlue}/>
+        {/*<ExpoLinksView />*/}
 
       </ScrollView>
     )
