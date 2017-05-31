@@ -18,7 +18,7 @@ import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
 import PreviewTopBar from '../components/PreviewTopBar'
-import Tweet from '../components/Tweet'
+import TweetPreview from '../components/TweetPreview'
 
 export default class PreviewScreen extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ export default class PreviewScreen extends React.Component {
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(
-        <Tweet text={tweets[i]} key={i}/>
+        <TweetPreview text={tweets[i]} key={i}/>
       )
     }
 

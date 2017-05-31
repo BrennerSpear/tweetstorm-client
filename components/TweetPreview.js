@@ -16,13 +16,11 @@ export default class Tweet extends React.Component {
   }
 
   render() {
-    console.log('rendering Tweet')
-
-    var tweet = this.props.tweet
+    console.log('rendering TweetPreview')
 
     return (
         <View style={styles.container}>
-          <Text>{tweet.display_text} </Text>
+          <Text>{this.props.text} </Text>
         </View>
     )
   }

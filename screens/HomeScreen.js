@@ -14,7 +14,7 @@ import HomePageTopBar from '../components/HomePageTopBar'
 import Sizes from '../constants/Sizes'
 import {serverEndpoint} from '../envConfig'
 
-import Tweet from '../components/Tweet'
+import TweetHome from '../components/TweetHome'
 import Router from '../navigation/Router'
 
 export default class HomeScreen extends React.Component {
@@ -69,7 +69,7 @@ export default class HomeScreen extends React.Component {
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(
-        <Tweet tweet={tweets[i]} key={i}/>
+        <TweetHome tweet={tweets[i]} key={i}/>
       )
     }
 
