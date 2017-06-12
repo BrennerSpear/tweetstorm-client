@@ -22,7 +22,7 @@ export default class HomeScreen extends React.Component {
     super(props)
 
   }
-
+  
   state = {
     tweets: []
   }
@@ -85,7 +85,7 @@ export default class HomeScreen extends React.Component {
           updateRootState={this.props.updateRootState}
           navigator={this.props.navigator}/>
         <ScrollView
-          style={styles.container}
+          style={styles.scrollViewContainer}
           contentContainerStyle={this.props.route.getContentContainerStyle()}>
           {this.renderTweets()}
         </ScrollView>
@@ -104,7 +104,9 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     paddingTop: Sizes.statusBar.paddingTop,
   },
+  scrollViewContainer: {
+    flex: 1
+  }
 })

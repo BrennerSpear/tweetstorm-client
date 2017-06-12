@@ -2,6 +2,7 @@ import Expo from 'expo'
 import React from 'react'
 import Sentry from 'sentry-expo';
 Sentry.config('https://51c4658a4b8c4b8489574be3462b6c80@sentry.io/173167').install();
+
 import { Platform, StatusBar, StyleSheet, View, AsyncStorage} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -11,6 +12,22 @@ import RootNavigation from './navigation/RootNavigation'
 
 import Router from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
+
+import {
+  setCustomView,
+  setCustomTextInput,
+  setCustomText,
+  setCustomImage,
+  setCustomTouchableOpacity
+} from 'react-native-global-props';
+
+const customTextProps = {
+  style: {
+    'fontFamily': Platform.OS === 'ios' ? 'HelveticaNeue' : 'Roboto',
+  }
+}
+setCustomText(customTextProps)
+
 
 console.log('top of main.js file')
 class AppContainer extends React.Component {

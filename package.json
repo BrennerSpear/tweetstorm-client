@@ -20,6 +20,7 @@
     "lodash": "^4.17.4",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/exponent/react-native/archive/sdk-16.0.0.tar.gz",
+    "react-native-global-props": "^1.1.1",
     "react-native-keyboard-spacer": "^0.3.1",
     "sentry-expo": "^1.0.2"
   },
