@@ -20,6 +20,8 @@ import Sizes from '../constants/Sizes'
 
 import SplitTweets from '../utilities/splitTweets'
 
+import twitter from 'twitter-text'
+
 export default class NewTweetScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -65,7 +67,7 @@ export default class NewTweetScreen extends React.Component {
 
   calculateCharsLeft(tweetsArray) {
     var lastTweet = tweetsArray[tweetsArray.length-1] || '1/ '
-    var charsLeft = 140 - lastTweet.length
+    var charsLeft = 140 - twitter.getTweetLength(lastTweet)
     return charsLeft
   }
 
