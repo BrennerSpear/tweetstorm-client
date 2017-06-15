@@ -59,6 +59,7 @@ export default class LoginScreen extends React.Component {
   loginWithTwitter = async () => {
     try {
       const queryString = this.toQueryString({secret: 'kepler452b', linkingUri: Expo.Constants.linkingUri})
+      console.log('before',redirectURLEndpoint+queryString)
       const redirectURLResult = await fetch((redirectURLEndpoint+queryString), {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },

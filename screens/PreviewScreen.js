@@ -18,7 +18,7 @@ import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
 import PreviewTopBar from '../components/PreviewTopBar'
-import Tweet from '../components/Tweet'
+import TweetPreview from '../components/TweetPreview'
 
 export default class PreviewScreen extends React.Component {
   constructor(props) {
@@ -58,12 +58,13 @@ export default class PreviewScreen extends React.Component {
   renderTweets = () => {
     var tweetsInViews = []
     var tweets = this.props.tweets
+    var profileInfo = this.props.profileInfo
     console.log('above tweets')
     console.log('tweets', tweets)
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(
-        <Tweet text={tweets[i]} key={i}/>
+        <TweetPreview text={tweets[i]} profileInfo={profileInfo} key={i}/>
       )
     }
 
@@ -77,7 +78,9 @@ export default class PreviewScreen extends React.Component {
 
         <PreviewTopBar />
         
-        <ScrollView style={styles.mainArea} contentContainerStyle={{flex: 1}}>
+        <ScrollView
+          style={styles.scrollViewContainer}
+          contentContainerStyle={this.props.route.getContentContainerStyle()}>
           {this.renderTweets()}
         </ScrollView>
 
@@ -98,13 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop: Sizes.statusBar.paddingTop
   },
-  mainArea: {
+  scrollViewContainer: {
     flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    // backgroundColor: 'grey'
   },
   optionsBar: {
     height: 50,

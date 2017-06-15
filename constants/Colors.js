@@ -14,5 +14,8 @@ export default {
   noticeText: '#fff',
   twitterBlue: '#58AEF0',
   twitterGrey: '#8899A6',
+  twitterLightGrey: '#aab8c2',
+  twitterHandleGrey: '#657786',
+  twitterBorderGrey: '#e6ecf0',
   white: '#ffffff'
 };
