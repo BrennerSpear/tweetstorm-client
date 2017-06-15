@@ -101,8 +101,6 @@ const splitToTweets = function(sentences, prefixOption, postfix) {
     tweets.push(tweet)
     index++
 
-    console.log('tweet', twitter.getTweetLength(tweet))
-    // console.log('left ', twitter.getTweetLength(sentencesLeft[0]))
   }
   return tweets
   
