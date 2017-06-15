@@ -45,9 +45,10 @@ export default class TweetHome extends React.Component {
               <Text style={styles.tweetContent}>{tweet.display_text} </Text>
             </View>
             <View style={styles.iconsContainer}>
-              {Icon('arrow-left', 'tiny', 'twitterLightGrey', styles.icon)}
-              {Icon('refresh', 'tiny', 'twitterLightGrey', styles.icon)}
-              {Icon('heart', 'tiny', 'twitterLightGrey', styles.icon)}
+              <View style={styles.iconContainer}>{Icon('comment-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('retweet', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('heart-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('envelope-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
             </View>
           </View>
         </View>
@@ -94,8 +95,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  iconContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+
   icon: {
-    marginRight: 70
+
   },
 
   screenName: {
@@ -118,6 +125,6 @@ const styles = StyleSheet.create({
     marginTop: 1,
     marginBottom: 1,
     resizeMode: 'contain',
-    borderRadius: 5
+    borderRadius: (Sizes.icon.large/2)
   },
 })

@@ -4,10 +4,10 @@ import { ExpoLinksView } from '@expo/samples'
 
 import Colors from '../constants/Colors'
 
-export default class LinksScreen extends React.Component {
+export default class ProfileScreen extends React.Component {
   static route = {
     navigationBar: {
-      title: 'Links',
+      title: 'Profile',
     },
   }
 
