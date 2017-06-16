@@ -18,7 +18,7 @@ export default class PreviewTopBar extends React.Component {
     console.log('rendering PreviewTopBar')
     return (
         <View style={styles.topBar}>
-          {Icon('twitter', 'medium', 'twitterBlue')}
+          {Icon('FontAwesome', 'twitter', 'medium', 'twitterBlue')}
         </View>
     )
   }

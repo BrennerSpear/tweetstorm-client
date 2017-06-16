@@ -53,17 +53,17 @@ export default class RootNavigation extends React.Component {
           <TabNavigation tabBarHeight={this.getTabBarHeight()} initialTab="home">
             <TabNavigationItem
               id="home"
-              renderIcon={isSelected => Icon('home', 'medium', this.color(isSelected))}>
+              renderIcon={isSelected => Icon('FontAwesome', 'home', 'medium', this.color(isSelected))}>
               <StackNavigation initialRoute={
               Router.getRoute('home',
               {profileInfo: this.props.profileInfo,
                updateRootState: this.updateRootState,
-               firstOpen: true})} />
+               firstOpen: false})} />
             </TabNavigationItem>
 
             <TabNavigationItem
               id="profile"
-              renderIcon={isSelected => Icon('user', 'medium', this.color(isSelected))}>
+              renderIcon={isSelected => Icon('FontAwesome', 'user', 'medium', this.color(isSelected))}>
               <StackNavigation initialRoute={
               Router.getRoute('profile',
               {profileInfo: this.props.profileInfo,

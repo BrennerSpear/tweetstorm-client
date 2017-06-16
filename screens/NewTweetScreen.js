@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button
 } from 'react-native'
+import Picker from '../components/Picker'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { NavigationStyles } from '@expo/ex-navigation'
@@ -30,12 +31,10 @@ export default class NewTweetScreen extends React.Component {
       tweets: null,
       prefixOption: 'slash',
       postfixOption: true,
-      charsLeft: 137,
+      charsLeft: 140,
       blank: true
     }
 
-    this.handleChange = this.handleChange.bind(this)
-    this.preview = this.preview.bind(this)
   }
 
   static route = {
@@ -51,10 +50,9 @@ export default class NewTweetScreen extends React.Component {
     console.log('NewTweetScreen componentDidMount')
   }
 
-  handleChange(e) {
-    const text = e.text
+  handleTextChange(text) {
     const tweets = SplitTweets.splitTweets(text, this.state.prefixOption, this.state.postfixOption)
-    const charsLeft = this.calculateCharsLeft(tweets)
+    const charsLeft = this.calculateCharsLeft(tweets, this.state.prefixOption)
     const blank = (text === '')
     this.setState({
       text: text,
@@ -62,12 +60,29 @@ export default class NewTweetScreen extends React.Component {
       charsLeft: charsLeft,
       blank: blank
     })
-    // console.log(tweets)
   }
 
-  calculateCharsLeft(tweetsArray) {
-    var lastTweet = tweetsArray[tweetsArray.length-1] || '1/ '
+  handlePrefixChange(prefix) {
+    const tweets = SplitTweets.splitTweets(this.state.text, prefix, this.state.postfixOption)
+    const charsLeft = this.calculateCharsLeft(tweets, prefix)
+    const blank = (this.state.text === '')
+    this.setState({
+      tweets: tweets,
+      charsLeft: charsLeft,
+      blank: blank,
+      prefixOption: prefix
+    })
+  }
+
+  blankTweetPrefix(prefix) {
+    return prefix === 'none' ? '' : '1/ '
+  }
+
+  calculateCharsLeft(tweetsArray, prefix) {
+    var lastTweet = tweetsArray[tweetsArray.length-1] || this.blankTweetPrefix(prefix)
+    console.log('lastTweet', lastTweet)
     var charsLeft = 140 - twitter.getTweetLength(lastTweet)
+    console.log('charsLeft', charsLeft)
     return charsLeft
   }
 
@@ -96,20 +111,26 @@ export default class NewTweetScreen extends React.Component {
             style={styles.mainInput}
             placeholder="Tweetstorm away!"
             multiline = {true}
-            onChangeText={(text) => this.handleChange({text})}
+            onChangeText={::this.handleTextChange}
           />
         </ScrollView>
         
 
         <View style={styles.optionsBar}>
           <View style={styles.left}>
-            {Icon('camera', 'small', 'twitterGrey', styles.icon)}
-            {Icon('gear', 'small', 'twitterGrey', styles.icon)}
+            {Icon('FontAwesome', 'camera', 'small', 'twitterGrey', styles.icon)}
+            <Picker
+            selectedValue={this.state.prefixOption}
+            onValueChange={::this.handlePrefixChange}>
+              <Picker.Item label="1/ " value="slash" />
+              <Picker.Item label="1. " value="period" />
+              <Picker.Item label="1 " value="space" />
+              <Picker.Item label="none" value="none" />
+            </Picker>
           </View>
-
           <View style={styles.right}>
             <Text style={styles.charsLeft}>{this.state.charsLeft}</Text>
-            <Button onPress={this.preview} title="Preview" color={Colors.twitterBlue}/>
+            <Button onPress={::this.preview} title="Preview" color={Colors.twitterBlue}/>
           </View>
         </View>
 
@@ -119,6 +140,9 @@ export default class NewTweetScreen extends React.Component {
 
     )
   }
+
+
+
 }
 
 const styles = StyleSheet.create({

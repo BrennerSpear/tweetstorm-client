@@ -11,6 +11,7 @@ import {
 import Icon from './Icon'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
+import { EvilIcons } from '@expo/vector-icons'
 
 
 export default class TweetHome extends React.Component {
@@ -45,10 +46,10 @@ export default class TweetHome extends React.Component {
               <Text style={styles.tweetContent}>{tweet.display_text} </Text>
             </View>
             <View style={styles.iconsContainer}>
-              <View style={styles.iconContainer}>{Icon('comment-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
-              <View style={styles.iconContainer}>{Icon('retweet', 'tiny', 'twitterLightGrey', styles.icon)}</View>
-              <View style={styles.iconContainer}>{Icon('heart-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
-              <View style={styles.iconContainer}>{Icon('envelope-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('FontAwesome', 'comment-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('EvilIcons', 'retweet', 'small', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('FontAwesome', 'heart-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
+              <View style={styles.iconContainer}>{Icon('FontAwesome', 'envelope-o', 'tiny', 'twitterLightGrey', styles.icon)}</View>
             </View>
           </View>
         </View>
@@ -111,7 +112,6 @@ const styles = StyleSheet.create({
   },
 
   name: {
-    color: 'black',
     fontSize: 18,
     fontWeight: 'bold'
   },

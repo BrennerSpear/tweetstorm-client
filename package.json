@@ -22,6 +22,7 @@
     "react-native": "https://github.com/exponent/react-native/archive/sdk-16.0.0.tar.gz",
     "react-native-global-props": "^1.1.1",
     "react-native-keyboard-spacer": "^0.3.1",
+    "react-native-picker-dropdown": "0.0.1",
     "sentry-expo": "^1.0.2",
     "twitter-text": "^1.14.3"
   },

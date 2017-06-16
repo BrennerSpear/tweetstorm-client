@@ -34,9 +34,9 @@ export default class HomePageTopBar extends React.Component {
     console.log('rendering HomePageTopBar')
     return (
         <View style={styles.topBar}>
-          {Icon('pencil-square-o', 'medium', 'white')}
-          {Icon('twitter', 'medium', 'twitterBlue')}
-          {Icon('pencil-square-o', 'medium', 'twitterBlue', null, this.newTweet)}
+          {Icon('FontAwesome', 'pencil-square-o', 'medium', 'white')}
+          {Icon('FontAwesome', 'twitter', 'medium', 'twitterBlue')}
+          {Icon('EvilIcons', 'pencil', 'large', 'twitterBlue', null, this.newTweet)}
         </View>
     )
   }

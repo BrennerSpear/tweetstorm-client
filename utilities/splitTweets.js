@@ -107,6 +107,7 @@ const splitToTweets = function(sentences, prefixOption, postfix) {
 }
 
 exports.splitTweets = function(tweetBlob, prefixOption, postfixOption) {
+  if(!tweetBlob) {return []}
   var trimmedBlob = tweetBlob.trim()
   var sentences = splitToSentences(trimmedBlob)
   var tweets = splitToTweets(sentences, prefixOption, postfixOption)

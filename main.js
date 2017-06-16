@@ -24,6 +24,7 @@ import {
 const customTextProps = {
   style: {
     'fontFamily': Platform.OS === 'ios' ? 'HelveticaNeue' : 'Roboto',
+    'color': '#14171a'
   }
 }
 setCustomText(customTextProps)
