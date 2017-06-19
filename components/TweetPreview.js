@@ -13,23 +13,22 @@ import Sizes from '../constants/Sizes'
 export default class TweetPreview extends React.Component {
 
   componentDidMount() {
-    console.log('Tweet componentDidMount')
   }
 
   render() {
-    console.log('rendering TweetHome')
-
-    var text = this.props.text
-    var handle = this.props.profileInfo.handle
+    const text = this.props.text
+    const handle = this.props.profileInfo.handle
+    const name = this.props.profileInfo.name
+    const profile_image_url = this.props.profileInfo.profile_image_url
 
     return (
       <View style={styles.container}>
         <View style={styles.profPicContainer}>
-        <Image style={styles.profPicImage} source={{uri:'https://pbs.twimg.com/profile_images/846572389001416704/ie1Bbnq6_bigger.jpg'}}/>
+        <Image style={styles.profPicImage} source={{uri:profile_image_url}}/>
         </View>
         <View style={styles.textContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.name}>Brenner</Text>
+            <Text style={styles.name}>{name}</Text>
             <Text style={styles.screenName}>{'  @' + handle}</Text>
           </View>
           <View style={styles.tweetContentContainer}>
@@ -114,6 +113,6 @@ const styles = StyleSheet.create({
     marginTop: 1,
     marginBottom: 1,
     resizeMode: 'contain',
-    borderRadius: 5
+    borderRadius: (Sizes.icon.large/2)
   },
 })

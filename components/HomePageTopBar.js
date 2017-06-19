@@ -17,10 +17,6 @@ export default class HomePageTopBar extends React.Component {
     super()
   }
 
-  componentDidMount() {
-    console.log('HomePageTopBar componentDidMount')
-  }
-
   newTweet() {
     this.props.updateRootState({showTabBar: false})
     this.props.navigator.push(Router.getRoute('newTweet',
@@ -30,7 +26,6 @@ export default class HomePageTopBar extends React.Component {
   }
 
   render() {
-    console.log('rendering HomePageTopBar')
     return (
         <View style={styles.topBar}>
           {Icon('EvilIcons', 'pencil', 'mediumLarge', 'white')/*placeholder so space-between works nicely*/} 

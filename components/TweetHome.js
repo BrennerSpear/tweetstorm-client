@@ -17,7 +17,6 @@ import { EvilIcons } from '@expo/vector-icons'
 export default class TweetHome extends React.Component {
 
   componentDidMount() {
-    console.log('TweetHome componentDidMount')
   }
 
   onPress(url) {
@@ -25,21 +24,20 @@ export default class TweetHome extends React.Component {
     Linking.openURL(deepLink)
   }
 
-
   render() {
-    console.log('rendering TweetHome')
-
-    var tweet = this.props.tweet
+    const tweet = this.props.tweet
+    const name = this.props.profileInfo.name
+    const profile_image_url = this.props.profileInfo.profile_image_url
 
     return (
       <TouchableOpacity onPress={() => this.onPress(tweet.url)}>
         <View style={styles.container}>
           <View style={styles.profPicContainer}>
-          <Image style={styles.profPicImage} source={{uri:'https://pbs.twimg.com/profile_images/846572389001416704/ie1Bbnq6_bigger.jpg'}}/>
+          <Image style={styles.profPicImage} source={{uri: profile_image_url}}/>
           </View>
           <View style={styles.textContainer}>
             <View style={styles.headerContainer}>
-              <Text style={styles.name}>Brenner</Text>
+              <Text style={styles.name}>{name}</Text>
               <Text style={styles.screenName}>{'  @' + tweet.screen_name}</Text>
             </View>
             <View style={styles.tweetContentContainer}>

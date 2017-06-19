@@ -41,12 +41,10 @@ export default class RootNavigation extends React.Component {
   }
 
   updateRootState(params) {
-    console.log('updating Root state', params)
     this.setState(params)
   }
 
   render() {
-    console.log('rendering RootNavigation')
     return (
       <View style={styles.container}>
         <NavigationProvider router={Router}>

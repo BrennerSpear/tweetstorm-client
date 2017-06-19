@@ -4,13 +4,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import Router from '../navigation/Router'
 
 export default class SentTweetScreen extends React.Component {
-  // static route = {
-  //   navigationBar: {
-  //     title: 'SentTweetScreen',
-  //   },
-  // }
-
-  
 
   componentDidMount() {
     setTimeout(() => {
@@ -21,10 +14,8 @@ export default class SentTweetScreen extends React.Component {
          firstOpen: false})], 0)
     }, 1200)
   }
-
-
+  
   render() {
-    console.log('rendering SentTweetScreen')
     return (
       <View
         style={styles.container}>

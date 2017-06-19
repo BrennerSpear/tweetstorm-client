@@ -46,10 +46,6 @@ export default class NewTweetScreen extends React.Component {
     },
   }
 
-  componentDidMount() {
-    console.log('NewTweetScreen componentDidMount')
-  }
-
   handleTextChange(text) {
     const tweets = SplitTweets.splitTweets(text, this.state.prefixOption, this.state.postfixOption)
     const charsLeft = this.calculateCharsLeft(tweets, this.state.prefixOption)
@@ -80,9 +76,7 @@ export default class NewTweetScreen extends React.Component {
 
   calculateCharsLeft(tweetsArray, prefix) {
     var lastTweet = tweetsArray[tweetsArray.length-1] || this.blankTweetPrefix(prefix)
-    console.log('lastTweet', lastTweet)
     var charsLeft = 140 - twitter.getTweetLength(lastTweet)
-    console.log('charsLeft', charsLeft)
     return charsLeft
   }
 
@@ -96,7 +90,6 @@ export default class NewTweetScreen extends React.Component {
   }
 
   render() {
-    console.log('rendering NewTweetScreen')
     return (
       <View style={styles.container}>
 
@@ -156,13 +149,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingRight: 10,
     paddingBottom: 10,
-    paddingLeft: 10,
-    // backgroundColor: 'grey'
+    paddingLeft: 10
   },
   mainInput: {
     flex: 1,
-    fontSize: 20,
-    // backgroundColor: 'grey'
+    fontSize: 20
   },
   optionsBar: {
     height: 50,
@@ -179,8 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingRight: 15,
-    // backgroundColor: 'blue'
+    paddingRight: 15
   },
   charsLeft: {
     paddingRight: 15

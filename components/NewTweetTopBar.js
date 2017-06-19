@@ -19,7 +19,6 @@ export default class NewTweetTopBar extends React.Component {
   }
 
   componentDidMount() {
-    console.log('NewTweetTopBar componentDidMount')
   }
 
   goBack() {
@@ -28,11 +27,10 @@ export default class NewTweetTopBar extends React.Component {
   }
 
   render() {
-    console.log('rendering NewTweetTopBar')
     return (
         <View style={styles.topView}>
           <View style={styles.topViewLeft}>
-            <Image style={styles.profPicImage} source={{uri:'https://pbs.twimg.com/profile_images/846572389001416704/ie1Bbnq6_bigger.jpg'}}/>
+            <Image style={styles.profPicImage} source={{uri:this.props.profileInfo.profile_image_url}}/>
             <Text>@{this.props.profileInfo.handle}</Text>
           </View>
           <View style={styles.xbutton}>
