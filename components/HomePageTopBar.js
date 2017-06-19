@@ -15,11 +15,6 @@ import Sizes from '../constants/Sizes'
 export default class HomePageTopBar extends React.Component {
     constructor() {
     super()
-    this.newTweet = this.newTweet.bind(this)
-  }
-
-  componentDidMount() {
-    console.log('HomePageTopBar componentDidMount')
   }
 
   newTweet() {
@@ -31,12 +26,11 @@ export default class HomePageTopBar extends React.Component {
   }
 
   render() {
-    console.log('rendering HomePageTopBar')
     return (
         <View style={styles.topBar}>
-          {Icon('pencil-square-o', 'medium', 'white')}
-          {Icon('twitter', 'medium', 'twitterBlue')}
-          {Icon('pencil-square-o', 'medium', 'twitterBlue', null, this.newTweet)}
+          {Icon('EvilIcons', 'pencil', 'mediumLarge', 'white')/*placeholder so space-between works nicely*/} 
+          {Icon('FontAwesome', 'twitter', 'medium', 'twitterBlue')}
+          {Icon('EvilIcons', 'pencil', 'mediumLarge', 'twitterBlue', null, ::this.newTweet)}
         </View>
     )
   }

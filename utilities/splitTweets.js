@@ -1,3 +1,5 @@
+var twitter = require('twitter-text')
+
 String.prototype.replaceAll = function(search, replacement) {
  var target = this
  return target.split(search).join(replacement)
@@ -86,7 +88,8 @@ const splitToTweets = function(sentences, prefixOption, postfix) {
     var singlePeriod = checkPeriod(sentencesLeft, postfix) //sentence is one char shorter if we get to shave it at the end
     
     //keep moving sentences into the same tweet as long as they fit
-    while(sentencesLeft.length > 0 && tweet.length + sentencesLeft[0].length + singlePeriod <= MAX) {
+
+    while(sentencesLeft.length > 0 && twitter.getTweetLength(tweet) + twitter.getTweetLength(sentencesLeft[0]) + singlePeriod <= MAX) {
       tweet += sentencesLeft.shift()
       tweet += ' '
       singlePeriod = checkPeriod(sentencesLeft, postfix)
@@ -97,12 +100,14 @@ const splitToTweets = function(sentences, prefixOption, postfix) {
     tweet = trimTweet(tweet, postfix)
     tweets.push(tweet)
     index++
+
   }
   return tweets
   
 }
 
 exports.splitTweets = function(tweetBlob, prefixOption, postfixOption) {
+  if(!tweetBlob) {return []}
   var trimmedBlob = tweetBlob.trim()
   var sentences = splitToSentences(trimmedBlob)
   var tweets = splitToTweets(sentences, prefixOption, postfixOption)

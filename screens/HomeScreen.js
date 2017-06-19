@@ -34,7 +34,6 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    console.log('HomeScreen componentDidMount')
     if(this.props.firstOpen) {
       this.props.updateRootState({showTabBar: false})
       this.props.navigator.push(Router.getRoute('newTweet',
@@ -69,7 +68,11 @@ export default class HomeScreen extends React.Component {
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(
-        <TweetHome tweet={tweets[i]} key={i}/>
+        <TweetHome
+          tweet={tweets[i]}
+          key={i}
+          profileInfo={this.props.profileInfo}
+        />
       )
     }
 
@@ -77,7 +80,6 @@ export default class HomeScreen extends React.Component {
   }  
 
   render() {
-    console.log('rendering HomeScreen')
     return (
       <View style={styles.container}>
         <HomePageTopBar
@@ -92,13 +94,6 @@ export default class HomeScreen extends React.Component {
       </View>
     )
   }
-
-  _exampleOfLinking = () => {
-    Linking.openURL(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    )
-  }
-
 }
 
 const styles = StyleSheet.create({

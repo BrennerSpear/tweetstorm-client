@@ -24,12 +24,12 @@ import {
 const customTextProps = {
   style: {
     'fontFamily': Platform.OS === 'ios' ? 'HelveticaNeue' : 'Roboto',
+    'color': '#14171a'
   }
 }
 setCustomText(customTextProps)
 
 
-console.log('top of main.js file')
 class AppContainer extends React.Component {
 
   constructor() {
@@ -60,7 +60,7 @@ class AppContainer extends React.Component {
       console.log(e.message)
     }
     finally {
-      console.log('user loaded')
+      //console.log('user loaded')
     }
 
   }
@@ -81,7 +81,6 @@ class AppContainer extends React.Component {
       )
       console.log(e.message)
     } finally {
-      console.log('app is ready')
       this.setState({ appIsReady: true })
       
     }
@@ -91,7 +90,6 @@ class AppContainer extends React.Component {
     if(!params.error) {
       try {
         params.loggedIn = true
-        console.log('_login function')
         this.setState(params)
         var twitterData = JSON.stringify(params)
         await AsyncStorage.setItem('twitterData', twitterData)
@@ -123,13 +121,14 @@ class AppContainer extends React.Component {
   profileInfo() {
     return {
       handle: this.state.handle,
+      name: this.state.name,
       token: this.state.token,
       token_secret: this.state.token_secret,
-      twitter_id: this.state.twitter_id
+      twitter_id: this.state.twitter_id,
+      profile_image_url: this.state.profile_image_url
     }
   }
   render() {
-    console.log('rendering main')
     if (this.state.appIsReady && this.state.loggedIn) {
       return <RootNavigation profileInfo={this.profileInfo()} logOut={this.logOut}/>
     } else if(this.state.appIsReady){

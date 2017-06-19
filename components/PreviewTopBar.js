@@ -2,6 +2,7 @@ import React from 'react'
 import {
   StyleSheet,
   View,
+  Text,
 } from 'react-native'
 
 import Icon from './Icon'
@@ -10,15 +11,11 @@ import Sizes from '../constants/Sizes'
 
 export default class PreviewTopBar extends React.Component {
 
-  componentDidMount() {
-    console.log('PreviewTopBar componentDidMount')
-  }
-
   render() {
     console.log('rendering PreviewTopBar')
     return (
         <View style={styles.topBar}>
-          {Icon('twitter', 'medium', 'twitterBlue')}
+          <Text style={styles.title}>Storm Preview</Text>
         </View>
     )
   }
@@ -32,5 +29,9 @@ const styles = StyleSheet.create({
     height: Sizes.topBar.height,
     borderBottomColor: Colors.twitterGrey,
     borderBottomWidth: StyleSheet.hairlineWidth
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 })

@@ -23,18 +23,6 @@ import TweetPreview from '../components/TweetPreview'
 export default class PreviewScreen extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = {}
-    this.tweet = this.tweet.bind(this)
-  }
-
-  static route = {
-    navigationBar: {
-      visible: false,
-    },
-  }
-
-  componentDidMount() {
-    console.log('PreviewScreen componentDidMount')
   }
 
   goBack = () => {
@@ -59,20 +47,16 @@ export default class PreviewScreen extends React.Component {
     var tweetsInViews = []
     var tweets = this.props.tweets
     var profileInfo = this.props.profileInfo
-    console.log('above tweets')
-    console.log('tweets', tweets)
 
     for(var i=0; i < tweets.length; i++) {
       tweetsInViews.push(
         <TweetPreview text={tweets[i]} profileInfo={profileInfo} key={i}/>
       )
     }
-
     return tweetsInViews
   }
 
   render() {
-    console.log('rendering PreviewScreen')
     return (
       <View style={styles.container}>
 
@@ -86,7 +70,7 @@ export default class PreviewScreen extends React.Component {
 
         <View style={styles.optionsBar}>
           <Button onPress={this.goBack} title="Edit" color={Colors.twitterBlue}/>
-          <Button onPress={this.tweet} title="Tweet" color={Colors.twitterBlue}/>
+          <Button onPress={::this.tweet} title="Tweet" color={Colors.twitterBlue}/>
         </View>
 
       </View>
