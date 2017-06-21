@@ -1,5 +1,6 @@
 import React from 'react'
 import Expo from 'expo'
+import Sentry from 'sentry-expo'
 import { View, Text, Button, StyleSheet, Linking } from 'react-native'
 import {redirectURLEndpoint, accessTokenEndpoint} from '../envConfig'
 
@@ -23,7 +24,7 @@ export default class LoginScreen extends React.Component {
   }
 
   handleTwitterRedirect = async (event) => {
-    if (!event.url.includes('+/redirect')) {
+    if (!event.url.includes('/redirect')) {
       return
     }
     // Parse the response query string into an object.

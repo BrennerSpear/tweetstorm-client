@@ -1,6 +1,6 @@
 import Expo from 'expo'
 import React from 'react'
-import Sentry from 'sentry-expo';
+import Sentry from 'sentry-expo'
 Sentry.config('https://51c4658a4b8c4b8489574be3462b6c80@sentry.io/173167').install();
 
 import { Platform, StatusBar, StyleSheet, View, AsyncStorage} from 'react-native'

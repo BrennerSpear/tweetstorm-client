@@ -1,26 +1,28 @@
 {
-  "name": "tweetstorm-client",
-  "description": "No description",
+  "name": "'Storm",
+  "description": "Tweetstorming made easy",
   "slug": "tweetstorm-client",
   "privacy": "unlisted",
   "scheme": "stormapp",
   "sdkVersion": "16.0.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
-  "icon": "./assets/icons/app-icon.png",
+  "icon": "./assets/icons/storm-logo-512.png",
   "notification": {
     "icon": "./assets/icons/notification-icon.png",
     "color": "#000000"
   },
   "loading": {
-    "icon": "./assets/icons/loading-icon.png",
-    "hideExponentText": false
+    "icon": "./assets/icons/storm-logo-192.png",
+    "hideExponentText": true
   },
   "packagerOpts": {
     "assetExts": ["ttf"]
   },
   "ios": {
+    "bundleIdentifier": "tweetstorm.gramercy",
+    "buildNumber":"2",
     "supportsTablet": true
   },
   "hooks": {

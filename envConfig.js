@@ -1,5 +1,5 @@
 const prodServer = 'https://brenner-tweetstorm.herokuapp.com/'
-const devServer  = 'https://b8a0cf84.ngrok.io/'
+const devServer  = 'https://7cdca786.ngrok.io/'
 
 const pairs = {
   serverEndpoint: '',

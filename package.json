@@ -1,7 +1,7 @@
 {
   "name": "tweetstorm-client",
-  "version": "0.0.0",
-  "description": "Hello Expo!",
+  "version": "1.0.1",
+  "description": "A tweetstorm-client",
   "author": null,
   "main": "main.js",
   "scripts": {
