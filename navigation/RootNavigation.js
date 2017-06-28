@@ -16,7 +16,6 @@ import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 import Icon from '../components/Icon'
 
-import MyStatusBar from '../components/MyStatusBar'
 // import registerForPushNotificationsAsync
   // from '../api/registerForPushNotificationsAsync'
 

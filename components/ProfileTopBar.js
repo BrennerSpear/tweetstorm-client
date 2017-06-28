@@ -9,12 +9,12 @@ import Icon from './Icon'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 
-export default class PreviewTopBar extends React.Component {
+export default class ProfileTopBar extends React.Component {
 
   render() {
     return (
         <View style={styles.topBar}>
-          <Text style={styles.title}>Storm Preview</Text>
+          <Text style={styles.title}>Profile</Text>
         </View>
     )
   }
