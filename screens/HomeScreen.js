@@ -1,3 +1,4 @@
+import Expo from 'expo'
 import React from 'react'
 import {
   Image,
@@ -8,10 +9,13 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ActivityIndicator,
+  StatusBar
 } from 'react-native'
 
 import HomePageTopBar from '../components/HomePageTopBar'
 import Sizes from '../constants/Sizes'
+import Icon from '../components/Icon'
 import {serverEndpoint} from '../envConfig'
 
 import TweetHome from '../components/TweetHome'
@@ -24,7 +28,8 @@ export default class HomeScreen extends React.Component {
   }
   
   state = {
-    tweets: []
+    tweets: [],
+    screenReady: false
   }
 
   static route = {
@@ -42,7 +47,7 @@ export default class HomeScreen extends React.Component {
       ))
     }
 
-    this.getTweets().then(tweets => {this.setState({tweets: tweets})})
+    this.getTweets().then(tweets => {this.setState({tweets: tweets, screenReady: true})})
   }
 
   async getTweets() {
@@ -63,25 +68,31 @@ export default class HomeScreen extends React.Component {
   }
 
   renderTweets(tweets) {
-    var tweetsInViews = []
-    var tweets = this.state.tweets
+    if(this.state.screenReady) {
+      var tweetsInViews = []
+      var tweets = this.state.tweets
 
-    for(var i=0; i < tweets.length; i++) {
-      tweetsInViews.push(
-        <TweetHome
-          tweet={tweets[i]}
-          key={i}
-          profileInfo={this.props.profileInfo}
-        />
-      )
+      for(var i=0; i < tweets.length; i++) {
+        tweetsInViews.push(
+          <TweetHome
+            tweet={tweets[i]}
+            key={i}
+            profileInfo={this.props.profileInfo}
+          />
+        )
+      }
+
+      return tweetsInViews
     }
-
-    return tweetsInViews
+    else {
+      return <ActivityIndicator size='large' style={styles.activityIndicator}/>
+    }
   }  
 
   render() {
     return (
       <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" animated={true}/>}
         <HomePageTopBar
           profileInfo={this.props.profileInfo}
           updateRootState={this.props.updateRootState}
@@ -99,9 +110,11 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Sizes.statusBar.paddingTop,
   },
   scrollViewContainer: {
     flex: 1
+  },
+  activityIndicator: {
+    marginTop: 10
   }
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Platform, StatusBar } from 'react-native'
+import { StyleSheet, View, Platform, StatusBar, Text } from 'react-native'
 import { Notifications } from 'expo'
 import {
   NavigationProvider,
@@ -15,6 +15,8 @@ import Router from './Router'
 import Colors from '../constants/Colors'
 import Sizes from '../constants/Sizes'
 import Icon from '../components/Icon'
+
+import MyStatusBar from '../components/MyStatusBar'
 // import registerForPushNotificationsAsync
   // from '../api/registerForPushNotificationsAsync'
 
@@ -68,8 +70,6 @@ export default class RootNavigation extends React.Component {
                logOut: this.props.logOut})} />
             </TabNavigationItem>
           </TabNavigation>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
         </NavigationProvider>
       </View>
     )
@@ -103,11 +103,6 @@ export default class RootNavigation extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  statusBarUnderlay: {
-    height: 24,
-    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   selectedTab: {
     color: Colors.tabIconSelected,

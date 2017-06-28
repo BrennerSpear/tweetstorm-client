@@ -10,6 +10,6 @@ export default {
     height: 50
   },
   statusBar: {
-    paddingTop: 20
+    marginTop: 20
   }
 }

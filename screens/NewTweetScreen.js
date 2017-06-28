@@ -141,8 +141,7 @@ export default class NewTweetScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: Sizes.statusBar.paddingTop
+    backgroundColor: '#fff'
   },
   mainArea: {
     flex: 1,

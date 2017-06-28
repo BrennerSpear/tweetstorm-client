@@ -82,8 +82,7 @@ export default class PreviewScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: Sizes.statusBar.paddingTop
+    backgroundColor: '#fff'
   },
   scrollViewContainer: {
     flex: 1,

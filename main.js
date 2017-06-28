@@ -3,9 +3,9 @@ import React from 'react'
 import Sentry from 'sentry-expo'
 Sentry.config('https://51c4658a4b8c4b8489574be3462b6c80@sentry.io/173167').install();
 
-import { Platform, StatusBar, StyleSheet, View, AsyncStorage} from 'react-native'
+import { Platform, StatusBar, StyleSheet, View, AsyncStorage, Text} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-
+import Sizes from './constants/Sizes'
 import LoginScreen from './screens/LoginScreen'
 
 import RootNavigation from './navigation/RootNavigation'
@@ -44,8 +44,8 @@ class AppContainer extends React.Component {
   }
 
   componentWillMount() {
-    this._loadAssetsAsync()
     this.loadUserAysnc()
+    this._loadAssetsAsync()
   }
 
   async loadUserAysnc() {
@@ -68,11 +68,7 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync({
-        images: [require('./assets/images/expo-wordmark.png')],
-        fonts: [
-          FontAwesome.font,
-          { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
-        ],
+        images: [require('./assets/icons/storm-logo-192.png')],
       })
     } catch (e) {
       console.warn(
@@ -130,7 +126,12 @@ class AppContainer extends React.Component {
   }
   render() {
     if (this.state.appIsReady && this.state.loggedIn) {
-      return <RootNavigation profileInfo={this.profileInfo()} logOut={this.logOut}/>
+      return (
+        <View style={styles.container}>
+          <RootNavigation profileInfo={this.profileInfo()} logOut={this.logOut}/>
+          <View style={styles.statusBar}/>
+        </View>
+      )
     } else if(this.state.appIsReady){
       return <LoginScreen login={this.logIn}/>
     } else {
@@ -142,11 +143,15 @@ class AppContainer extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    paddingTop: Sizes.statusBar.marginTop,
   },
-  statusBarUnderlay: {
-    height: 24,
-    backgroundColor: 'rgba(0,0,0,0.2)',
+  statusBar: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      height: Sizes.statusBar.marginTop,
+      backgroundColor: 'white',
   },
 })
 

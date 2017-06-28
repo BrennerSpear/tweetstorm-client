@@ -29,7 +29,7 @@ export default class HomePageTopBar extends React.Component {
     return (
         <View style={styles.topBar}>
           {Icon('EvilIcons', 'pencil', 'mediumLarge', 'white')/*placeholder so space-between works nicely*/} 
-          {Icon('FontAwesome', 'twitter', 'medium', 'twitterBlue')}
+          <Image style={styles.logo} source={require('../assets/icons/storm-logo-192.png')}/>
           {Icon('EvilIcons', 'pencil', 'mediumLarge', 'twitterBlue', null, ::this.newTweet)}
         </View>
     )
@@ -46,5 +46,9 @@ const styles = StyleSheet.create({
     height: Sizes.topBar.height,
     borderBottomColor: Colors.twitterGrey,
     borderBottomWidth: StyleSheet.hairlineWidth
+  },
+  logo: {
+    height: Sizes.icon.medium,
+    width: Sizes.icon.medium
   }
 })
